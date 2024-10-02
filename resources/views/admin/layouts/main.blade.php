@@ -13,6 +13,9 @@
     <link rel="stylesheet" href="{{ asset('assets/vendors/css/vendor.bundle.base.css') }}">
     <!-- endinject -->
 
+    <!-- Tambahkan ini di layout main atau di bagian atas index.blade.php -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
+
     <!-- Plugin css for this page -->
     <link rel="stylesheet" href="{{ asset('assets/vendors/datatables.net-bs4/dataTables.bootstrap4.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/vendors/ti-icons/css/themify-icons.css') }}">
@@ -22,6 +25,7 @@
     <!-- inject:css -->
     <link rel="stylesheet" href="{{ asset('assets/css/vertical-layout-light/style.css') }}">
     <!-- endinject -->
+
 
     <link rel="shortcut icon" href="{{ asset('assets/images/favicon.png') }}" />
 </head>
@@ -76,6 +80,42 @@
     <script src="{{ asset('assets/js/dashboard.js') }}"></script>
     <script src="{{ asset('assets/js/Chart.roundedBarCharts.js') }}"></script>
     <!-- End custom js for this page -->
+
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+
+    <script>
+    function previewImage(inputId, previewContainerId) {
+        const fileInput = document.getElementById(inputId);
+        const previewContainer = document.getElementById(previewContainerId);
+        
+        // Bersihkan kontainer pratinjau
+        previewContainer.innerHTML = ''; 
+
+        // Ambil file dari input
+        const file = fileInput.files[0];
+        if (file) {
+            const reader = new FileReader();
+
+            reader.onload = function(e) {
+                const img = document.createElement('img');
+                img.src = e.target.result;
+                img.alt = 'Preview Photo';
+
+                // Atur ukuran gambar
+                img.style.width = '100px';  // Setel lebar gambar
+                img.style.height = 'auto';   // Tinggi otomatis untuk menjaga aspek rasio
+                img.classList.add('shadow-sm');
+
+                // Tambahkan gambar baru ke kontainer pratinjau
+                previewContainer.appendChild(img);
+            };
+
+            reader.readAsDataURL(file);
+        }
+    }
+</script>
+
 
 </body>
 
