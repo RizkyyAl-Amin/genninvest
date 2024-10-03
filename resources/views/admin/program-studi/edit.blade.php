@@ -1,5 +1,7 @@
 @extends('admin.layouts.main')
 
+@section('title', 'Data Prodi')
+
 @section('content')
     <div class="main-panel">
         <div class="content-wrapper">
@@ -39,7 +41,7 @@
                         <div class="mt-5">
                             <label for="logo" class="block text-gray-700">Logo Image</label>
                             <input id="logo" type="file" class="form-control w-full border border-gray-300 rounded-lg py-2 px-4 focus:outline-none focus:ring-2 focus:ring-blue-500" name="logo" onchange="previewImage('logo', 'preview-logo')">
-                            
+
                             <div id="preview-logo" class="mt-2">
                                 @if($prodi->logo)
                                     <img src="{{ asset('img/uploaded_images/' . $prodi->logo) }}" id="current-photo" alt="Current Photo" style="width: 100px; " class="img-thumbnail justify-content-center align-items-center">
@@ -53,7 +55,7 @@
                         <div class="mt-5 mb-5">
                             <label for="thumbnail" class="block text-gray-700">Thumbnail Image</label>
                             <input id="thumbnail" type="file" class="form-control w-full border border-gray-300 rounded-lg py-2 px-4 focus:outline-none focus:ring-2 focus:ring-blue-500" name="thumbnail" onchange="previewImage('thumbnail', 'preview-thumbnail')">
-                            
+
                             <div id="preview-thumbnail" class="mt-2">
                                 @if($prodi->thumbnail)
                                     <img src="{{ asset('img/uploaded_images/' . $prodi->thumbnail) }}" id="current-photo" alt="Current Photo" style="width: 200px;" class="img-thumbnail justify-content-center align-items-center">
@@ -73,5 +75,5 @@
     </div>
 </div>
 
-        
+
 @endsection
