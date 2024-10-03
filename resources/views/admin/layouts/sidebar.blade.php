@@ -1,24 +1,34 @@
 <nav class="sidebar sidebar-offcanvas" id="sidebar">
     <ul class="nav">
         <li class="nav-item">
-            <a class="nav-link" href="{{ route('dashboard') }}">
+            <a class="nav-link {{ (request()->is('home')) ? 'active' : '' }}" href="/home">
                 <i class="icon-grid menu-icon"></i>
                 <span class="menu-title">Dashboard</span>
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="{{ route('prodi.index') }}">
-                <i class="icon-grid menu-icon"></i>
+            <a class="nav-link {{ (request()->is('prodi*')) ? 'active' : '' }}" href="/prodi">
+                <i class="icon-bar-graph menu-icon"></i>
                 <span class="menu-title">Program Studi</span>
             </a>
         </li>
         <li class="nav-item">
+<<<<<<< HEAD
             <a class="nav-link" href="{{ route('kerjasama.index') }}">
                 <i class="icon-grid menu-icon"></i>
                 <span class="menu-title">Kerja Sama</span>
             </a>
         </li>
         <li class="nav-item">
+=======
+            <a class="nav-link {{ (request()->is('user*')) ? 'active' : '' }}" href="/user">
+                <i class="icon-head menu-icon"></i>
+                <span class="menu-title">User</span>
+            </a>
+        </li>
+
+        {{-- <li class="nav-item">
+>>>>>>> 9a1be7c721c71b805f3f7e08c296492fc4ba173c
             <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
                 <i class="icon-layout menu-icon"></i>
                 <span class="menu-title">UI Elements</span>
@@ -124,6 +134,6 @@
                 <i class="icon-paper menu-icon"></i>
                 <span class="menu-title">Documentation</span>
             </a>
-        </li>
+        </li> --}}
     </ul>
 </nav>

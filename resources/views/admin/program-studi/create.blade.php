@@ -1,5 +1,7 @@
 @extends('admin.layouts.main')
 
+@section('title', 'Data Prodi')
+
 @section('content')
     <div class="main-panel">
         <div class="content-wrapper">
@@ -68,5 +70,5 @@
     </div>
 </div>
 
-        
+
 @endsection
