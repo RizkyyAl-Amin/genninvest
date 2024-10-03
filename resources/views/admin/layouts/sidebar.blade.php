@@ -13,19 +13,15 @@
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link {{ (request()->is('user*')) ? 'active' : '' }}" href="/user">
-                <i class="icon-head menu-icon"></i>
-                <span class="menu-title">User</span>
+<<<<<<< HEAD
+            <a class="nav-link" href="{{ route('kerjasama.index') }}">
+                <i class="icon-grid menu-icon"></i>
+                <span class="menu-title">Kerja Sama</span>
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link {{ (request()->is('berita*')) ? 'active' : '' }}" href="/berita">
-                <i class="icon-bar-graph menu-icon"></i>
-                <span class="menu-title">Berita</span>
-            </a>
-        </li>
-
-        {{-- <li class="nav-item">
+=======
+            
             <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
                 <i class="icon-layout menu-icon"></i>
                 <span class="menu-title">UI Elements</span>

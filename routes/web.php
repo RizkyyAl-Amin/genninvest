@@ -23,4 +23,8 @@ Route::middleware(['auth', 'checkrole:1'])->group(function () {
     Route::resource('/prodi', ProdiController::class);
     Route::resource('/user', UserController::class);
     Route::resource('/kerjasama', KerjasamaController::class);
+<<<<<<< HEAD
+=======
+
+>>>>>>> 18db554635fa79a6f9eabe9a085933171dcf82c6
 });
