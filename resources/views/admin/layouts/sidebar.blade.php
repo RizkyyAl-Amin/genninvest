@@ -20,7 +20,7 @@
         </li>
         <li class="nav-item">
             <a class="nav-link {{ (request()->is('berita*')) ? 'active' : '' }}" href="/berita">
-                <i class="icon-bar-news menu-icon"></i>
+                <i class="icon-bar-graph menu-icon"></i>
                 <span class="menu-title">Berita</span>
             </a>
         </li>
