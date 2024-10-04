@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\ArticleController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\ProdiController;
 use App\Http\Controllers\Admin\DashboardController;
@@ -24,4 +25,5 @@ Route::middleware(['auth', 'checkrole:1'])->group(function () {
     Route::resource('/user', UserController::class);
     Route::resource('/kerjasama', KerjasamaController::class);
     Route::resource('/berita', BeritaController::class);
+    Route::resource('/article', ArticleController::class);
 });
