@@ -20,6 +20,19 @@
             </a>
         </li>
         <li class="nav-item">
+            <a class="nav-link {{ (request()->is('user*')) ? 'active' : '' }}" href="/user">
+                <i class="icon-head menu-icon"></i>
+                <span class="menu-title">User</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link {{ (request()->is('berita*')) ? 'active' : '' }}" href="/berita">
+                <i class="icon-bar-graph menu-icon"></i>
+                <span class="menu-title">Berita</span>
+            </a>
+        </li>
+
+         <li class="nav-item">
 
             <a class="nav-link" href="{{ route('article.index') }}">
                 <i class="icon-paper menu-icon"></i>
