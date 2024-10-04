@@ -19,7 +19,7 @@
                     <div class="card-body">
                         <h4 class="card-title">Berita</h4>
                         <div style="float: right">
-                            <a href="{{ route('user.create') }}" class="btn btn-success btn-sm">
+                            <a href="{{ route('berita.create') }}" class="btn btn-success btn-sm">
                                 Tambah Berita
                             </a>
                         </div>
@@ -32,7 +32,6 @@
                                         <th>Judul</th>
                                         <th>Konten</th>
                                         <th>Author</th>
-                                        <th>tanggal</th>
                                         <th class="text-center" width="100">Aksi</th>
                                     </tr>
                                 </thead>
@@ -41,13 +40,12 @@
                                         <tr id="index_{{ $item->id }}">
                                             <td class="text-center">{{ $loop->iteration }}.</td>
                                             <td>
-                                                <img src="{{ asset($item->cover) }}" alt="{{ $item->judul }}"
-                                                        style="max-height: 100px; max-width: 100px;">
+                                                <img src="{{ asset('img/cover-berita/' . $item->cover)  }}" alt="{{ $item->judul }}" 
+                                                        style="width: 100px; height: 100px">
                                             </td>
                                             <td>{{ $item->judul }}</td>
-                                            <td>{{ $item->konten }}</td>
+                                            <td>{!! \Illuminate\Support\Str::limit($item->konten) !!}</td>
                                             <td>{{ $item->author }}</td>
-                                            <td>{{ $item->tanggal }}</td>
                                             <td class="text-center">
                                                 <a href="{{ route('user.edit', [Crypt::encrypt($item->id)]) }}"
                                                     class="btn btn-primary">

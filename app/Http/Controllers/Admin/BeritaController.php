@@ -28,34 +28,29 @@ class BeritaController extends Controller
         return view('admin.berita.create');
     }
 
-    /**
+     /**
      * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'thumbnail' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'logo' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'nama_prodi' => 'required',
-            'deskripsi' => 'required',
+            'cover' => 'nullable|image|mimes:jpg,jpeg,png|max:2084',
+            'judul' => 'required|min:3|max:500',
+            'author' => 'required',
+            'konten' => 'required',
+            'tanggal' => 'required'
         ]);
-
-        if ($request->hasFile('thumbnail')) {
-            $heroFileName = time() . '_hero.' . $request->thumbnail->extension();
-            $request->thumbnail->move(public_path('img/uploaded_images/'), $heroFileName);
-            $validatedData['thumbnail'] = $heroFileName;
+        if ($request->hasFile('cover')) {
+            $heroFileName = time() . '_hero.' . $request->cover->extension();
+            $request->cover->move(public_path('img/cover-berita/'), $heroFileName);
+            $validatedData['cover'] = $heroFileName;
         }
         
-        if ($request->hasFile('logo')) {
-            $headerFileName = time() . '_header.' . $request->logo->extension();
-            $request->logo->move(public_path('img/uploaded_images/'), $headerFileName);
-            $validatedData['logo'] = $headerFileName;
-        }
-        
-    
-        Berita::create($validatedData);
-
-        return redirect()->route('prodi.index')->with('success', 'Data Prodi Berhasil ditambahkan!');
+        Berita::create($validatedData); 
+        return redirect()->route('berita.index')->with('success', 'Berita Berhasil ditambahkan!');
     }
 
     /**
