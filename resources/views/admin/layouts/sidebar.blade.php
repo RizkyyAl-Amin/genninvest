@@ -20,7 +20,6 @@
             </a>
         </li>
         <li class="nav-item">
-
             <a class="nav-link {{ (request()->is('user*')) ? 'active' : '' }}" href="/user">
                 <i class="icon-head menu-icon"></i>
                 <span class="menu-title">User</span>
@@ -28,12 +27,22 @@
         </li>
         <li class="nav-item">
             <a class="nav-link {{ (request()->is('berita*')) ? 'active' : '' }}" href="/berita">
-                <i class="icon-bar-graph menu-icon"></i>
+                <i class="ti-world menu-icon"></i>
                 <span class="menu-title">Berita</span>
             </a>
         </li>
 
-        {{-- <li class="nav-item">
+         <li class="nav-item">
+
+            <a class="nav-link" href="{{ route('article.index') }}">
+                <i class="icon-paper menu-icon"></i>
+                <span class="menu-title">Article</span>
+            </a>
+        </li>
+        
+        <li class="nav-item">
+
+
             <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
                 <i class="icon-layout menu-icon"></i>
                 <span class="menu-title">UI Elements</span>
@@ -139,6 +148,6 @@
                 <i class="icon-paper menu-icon"></i>
                 <span class="menu-title">Documentation</span>
             </a>
-        </li> --}}
+        </li>
     </ul>
 </nav>

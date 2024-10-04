@@ -41,21 +41,24 @@
                                             <td class="text-center">{{ $loop->iteration }}.</td>
                                             <td>
                                                 <img src="{{ asset('img/cover-berita/' . $item->cover)  }}" alt="{{ $item->judul }}" 
-                                                        style="width: 100px; height: 100px">
+                                                style="width: 100px; height: 100px; object-fit: cover; border-radius: 0;">
                                             </td>
                                             <td>{{ $item->judul }}</td>
-                                            <td>{!! \Illuminate\Support\Str::limit($item->konten) !!}</td>
+                                            <td style="word-wrap: break-word; max-width: auto;">{!! \Illuminate\Support\Str::limit(strip_tags($item->konten), 70, '...') !!}</td>
                                             <td>{{ $item->author }}</td>
-                                            <td class="text-center">
-                                                <a href="{{ route('user.edit', [Crypt::encrypt($item->id)]) }}"
+                                            <td class="text-center d-flex justify-content-between">
+                                                <a href="{{ route('berita.edit', [Crypt::encrypt($item->id)]) }}"
                                                     class="btn btn-primary">
                                                     Edit
                                                 </a>
-                                                <a href="javascript:void(0)" class="btn btn-danger" id="delete-confirm"
-                                                    data-id="{{ Crypt::encrypt($item->id) }}"
-                                                    data-original-id="{{ $item->id }}">
-                                                    Hapus
+                                                <a>
+                                                    <form action="{{ route('berita.destroy', [Crypt::encrypt($item->id)]) }}" method="POST">
+                                                        @csrf
+                                                        @method('delete')
+                                                        <button class="btn btn-danger" onclick="return confirm('Apakah anda yakin ingin menghapus data ini?')">Delete</button>
+                                                    </form>
                                                 </a>
+                                                
                                             </td>
                                         </tr>
                                     @endforeach
@@ -82,40 +85,7 @@
             let original_id = $(this).data('original-id'); // Original ID for element removal
             let token = $("meta[name='csrf-token']").attr("content");
 
-            swal.fire({
-                title: 'Apakah kamu yakin?',
-                text: "Data tidak dapat dikembalikan",
-                icon: 'warning',
-                showCancelButton: true,
-                cancelButtonText: 'Batal',
-                confirmButtonText: 'Ya, hapus!',
-                customClass: {
-                    popup: 'custom-swal-height'
-                }
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    $.ajax({
-                        url: `/user/${encrypted_id}`,
-                        type: "DELETE",
-                        cache: false,
-                        data: {
-                            "_token": token
-                        },
-                        success: function(response) {
-                            Swal.fire({
-                                type: 'success',
-                                icon: 'success',
-                                title: `${response.message}`,
-                                showConfirmButton: true,
-                                timer: 3000
-                            });
-
-                            // Hapus elemen tabel berdasarkan ID asli
-                            $(`#index_${original_id}`).remove();
-                        }
-                    });
-                }
-            });
+            
         });
     </script>
 @endsection

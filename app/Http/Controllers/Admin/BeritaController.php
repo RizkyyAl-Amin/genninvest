@@ -58,11 +58,7 @@ class BeritaController extends Controller
      */
     public function show(string $id)
     {
-        $prodi = Berita::findOrFail($id); 
-    
-        return view('admin.program-studi.show', [
-            'prodi' => $prodi
-        ]);
+        
     }
 
     /**
@@ -72,9 +68,9 @@ class BeritaController extends Controller
     {
         $id = Crypt::decrypt($encryptedId);
 
-        $prodi = Berita::findOrFail($id);
+        $berita = Berita::findOrFail($id);
 
-        return view('admin.program-studi.edit', compact('prodi'));
+        return view('admin.berita.edit', compact('berita'));
     }
 
     /**
@@ -84,23 +80,24 @@ class BeritaController extends Controller
     {
         // Dekripsi ID
         $id = Crypt::decrypt($encryptedId);
-        $prodi = Berita::findOrFail($id);
+        $berita = Berita::findOrFail($id);
     
         // Validasi data
         $validatedData = $request->validate([
-            'nama_prodi' => 'required|string',
-            'deskripsi' => 'nullable|string',
-            'logo' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048', // Batasan ukuran 2MB
-            'thumbnail' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048' // Batasan ukuran 2MB
+            'cover' => 'nullable|image|mimes:jpg,jpeg,png|max:2084',
+            'judul' => 'required|min:3|max:500',
+            'author' => 'required',
+            'konten' => 'required',
+            'tanggal' => 'required'
         ]);
     
         // Fungsi untuk menyimpan file dan menghapus yang lama
-        function handleFileUpload($request, $prodi, $fieldName, $directory)
+        function handleFileUpload($request, $berita, $fieldName, $directory)
         {
             if ($request->hasFile($fieldName)) {
                 // Hapus file lama jika ada
-                if ($prodi->$fieldName) {
-                    $oldFilePath = public_path($directory . '/' . $prodi->$fieldName);
+                if ($berita->$fieldName) {
+                    $oldFilePath = public_path($directory . '/' . $berita->$fieldName);
                     if (File::exists($oldFilePath)) {
                         File::delete($oldFilePath);
                     }
@@ -111,18 +108,18 @@ class BeritaController extends Controller
                 $request->$fieldName->move(public_path($directory), $fileName);
                 return $fileName;
             }
-            return $prodi->$fieldName; // Gunakan file lama jika tidak ada file baru
+            return $berita->$fieldName; // Gunakan file lama jika tidak ada file baru
         }
     
-        // Proses logo dan thumbnail
-        $validatedData['logo'] = handleFileUpload($request, $prodi, 'logo', 'img/uploaded_images');
-        $validatedData['thumbnail'] = handleFileUpload($request, $prodi, 'thumbnail', 'img/uploaded_images');
+        // Proses cover
+        $validatedData['cover'] = handleFileUpload($request, $berita, 'cover', 'img/cover-berita');
+        
     
-        // Update model prodi dengan data yang divalidasi
-        $prodi->update($validatedData);
+        // Update model berita dengan data yang divalidasi
+        $berita->update($validatedData);
     
         // Redirect dengan pesan sukses
-        return redirect()->route('prodi.index')->with('success', 'Informasi Prodi berhasil diperbarui!');
+        return redirect()->route('berita.index')->with('success', 'Berita berhasil diperbarui!');
     }
     
     
@@ -134,25 +131,18 @@ class BeritaController extends Controller
     {
         $id = Crypt::decrypt($encryptedId);
         
-        $prodi = Berita::findOrFail($id);
+        $berita = Berita::findOrFail($id);
     
-        if ($prodi->logo) {
-            $logoPath = public_path('img/uploaded_photo/' . $prodi->logo);
+        if ($berita->cover) {
+            $coverPath = public_path('img/cover-berita/' . $berita->cover);
             
-            if (File::exists($logoPath)) {
-                File::delete($logoPath);
-            }
-        }
-        if ($prodi->thumbnail) {
-            $thumbnailPath = public_path('img/uploaded_photo/' . $prodi->thumbnail);
-            
-            if (File::exists($thumbnailPath)) {
-                File::delete($thumbnailPath);
+            if (File::exists($coverPath)) {
+                File::delete($coverPath);
             }
         }
     
-        $prodi->delete();
+        $berita->delete();
     
-        return redirect()->route('prodi.index')->with('success', 'Data Prodi berhasil dihapus!');
+        return redirect()->route('berita.index')->with('success', 'Berita berhasil dihapus!');
     }
 }

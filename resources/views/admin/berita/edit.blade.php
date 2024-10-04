@@ -62,7 +62,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="deskripsi">Konten</label>
-                                    <textarea class="form-control summernote" id="konten" name="konten" rows="4" placeholder="Isi konten berita"value="{{ old('konten', $berita->konten) }}"></textarea>
+                                    <textarea class="form-control summernote" id="konten" name="konten" rows="4">{{ old('konten', $berita->konten) }}</textarea>
                                     @error('konten')
                                         <p class="mt-2 text-sm text-red-600">
                                             {{ $message }}
@@ -73,7 +73,7 @@
                                     <label for="deskripsi">Tanggal</label>
                                     <input type="date"
                                         class="form-control w-full border border-gray-300 rounded-lg py-2 px-4 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                                        id="tanggal" name="tanggal" value="{{ old('tanggal', $berita->tanggal) }}>
+                                        id="tanggal" name="tanggal" value="{{ old('tanggal', $berita->tanggal) }}">
                                     @error('tanggal')
                                         <p class="mt-2 text-sm text-red-600">
                                             {{ $message }}
