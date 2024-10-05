@@ -10,6 +10,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Admin\KontakController;
 use App\Http\Controllers\Admin\DirekturController;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Article;
 
 Route::get('/', function () {
     return view('frontend.welcome',["articles"=> Article::latest()->limit(5)->get()]);
