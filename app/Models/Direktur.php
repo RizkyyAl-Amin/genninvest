@@ -5,10 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Kontak extends Model
+class Direktur extends Model
 {
     use HasFactory;
-    protected $table = 'kontak';
-    protected $fillable = ["alamat","email","no_hp","fb_url", "ig_url", "yt_url"];
-
+    protected $table = 'direktur';
+    protected $fillable = ["nama","sambutan"];
 }

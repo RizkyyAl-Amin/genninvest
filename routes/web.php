@@ -7,6 +7,8 @@ use App\Http\Controllers\Admin\KerjasamaController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\BeritaController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Admin\KontakController;
+use App\Http\Controllers\Admin\DirekturController;
 use Illuminate\Support\Facades\Auth;
 
 Route::get('/', function () {
@@ -23,6 +25,8 @@ Route::middleware(['auth', 'checkrole:1'])->group(function () {
     Route::resource('/kerjasama', KerjasamaController::class);
     Route::resource('/berita', BeritaController::class);
     Route::resource('/article', ArticleController::class);
+    Route::resource('/kontak', KontakController::class);
+    Route::resource('/direktur', DirekturController::class);
 });
 
 Route::middleware(['auth', 'checkrole:2'])->group(function () {

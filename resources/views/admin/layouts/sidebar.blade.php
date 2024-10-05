@@ -39,6 +39,20 @@
                 <span class="menu-title">Article</span>
             </a>
         </li>
+        <li class="nav-item">
+
+            <a class="nav-link" href="{{ route('kontak.index') }}">
+                <i class="icon-paper menu-icon"></i>
+                <span class="menu-title">Kontak</span>
+            </a>
+        </li>
+        <li class="nav-item">
+
+            <a class="nav-link {{ (request()->is('direktur*')) ? 'active' : '' }}" href="/direktur">
+                <i class="icon-head menu-icon"></i>
+                <span class="menu-title">Direktur</span>
+            </a>
+        </li>
         
         <li class="nav-item">
 
