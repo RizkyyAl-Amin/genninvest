@@ -11,39 +11,86 @@
                         <div class="col-12 col-xl-8 mb-4 mb-xl-0 ml-5">
                             <h3 class="font-weight-bold">Article</h3>
                             <h6 class="font-weight-normal mb-2">Seluruh data article Universitas XYZ</h6>
-                            <a href="{{ route('article.create') }}" class="btn btn-primary shadow-md mb-3 mt-5">Tambah Article</a>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div style="display: flex;justify-content:space-evenly" class="row mt-1 mb-3">
+                <div class="col-md-3 mb-2">
+                    <a href="{{ route('article.create') }}" class="btn btn-primary btn-block shadow-md">Tambah Artikel</a>
+                </div>
+                <div class="col-md-7">
+                    <form class="form-inline" action="{{route("article.index")}}" method="get">
+                        @csrf
+                        <div class="input-group w-100">
+                            <input class="form-control w-75 " name="search" type="search" placeholder="Cari Artikel" value="{{ request('search') }}" aria-label="Search">
+                            <div class="input-group-append">
+                                <button class="btn btn-outline-primary" type="submit">Search</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="col-lg-12 grid-margin">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-hover" id="data-table-prodi">
+                                <thead>
+                                    <tr>
+                                        <th>Nomor</th>
+                                        <th>Judul</th>
+                                        <th>Teks Artikel</th>
+                                        <th>Penulis</th>
+                                        <th>Waktu</th>
+                                        <th>Aksi</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($datas as $data)
+                                        <tr>
+                                            <td>{{ $loop->iteration }}</td>
+                                            <td>{{Str::words($data->title, 3, '...')}}</td>
+                                            <td>
+                                                {{Str::words($data->paragraf_1, 5, '...')}}
+                                            </td>
+                                            <td>
+                                                {{$data->writer}}
+                                            </td>
+                                            <td>
+                                                {{$data->created_at}} | {{$data->created_at->diffForHumans()}}
+                                            </td>
+                                            <td>
+                                                <div class="d-flex">
+                                                    <button class="btn btn-info" style="margin-right: 7px;">
+                                                        <a href="{{ route('article.show', [Crypt::encrypt($data->id)]) }}" style="text-decoration: none; color: white;">
+                                                            View
+                                                        </a>
+                                                    </button>
+                                                    <button class="btn btn-primary" style="margin-right: 7px;">
+                                                        <a style="color: white;text-decoration:none" href="{{ route('article.edit', [Crypt::encrypt($data->id)]) }}">
+                                                            Edit
+                                                        </a>
+                                                    </button>
+                                                    <form action="{{ route('article.destroy', [Crypt::encrypt($data->id)]) }}" method="post">
+
+                                                        @csrf
+                                                        @method("delete")
+                                                        <button onclick="return confirm('apakah anda yakin ingin menghapus article dengan title {{$data->title}}')" type="submit" class="btn btn-danger">Hapus</button>
+                                                   </form>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Group of cards -->
-            <div class="card-group d-flex flex-wrap">
-                @foreach ($datas as $data)
-                    <div class="card mr-3 mb-3" style="min-width: 14rem; max-width: 16rem;">
-                        <img src="{{asset("img/articles_images/". $data->image)}}" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">{{Str::words($data->title, 3, '...')}}</h5>
-                            <p class="card-text">{{Str::words($data->text_article, 5, '...')}}</p>
-                            <p class="card-text"><small class="text-body-secondary">writer : {{$data->writer}}</small></p>
-                            <p class="card-text"><small class="text-body-secondary">created : {{$data->created_at}} | {{$data->created_at->diffForHumans()}}</small></p>
-                            <div class="d-flex justify-content-between">
-                                <button class="btn btn-primary" style="margin-right: 7px;">
-                                    <a style="color: white;text-decoration:none" href="{{ route('article.edit', [Crypt::encrypt($data->id)]) }}">
-                                        Edit
-                                    </a>
-                                </button>
-                                <form action="{{ route('article.destroy', [Crypt::encrypt($data->id)]) }}" method="post">
-
-                                    @csrf
-                                    @method("delete")
-                                    <button onclick="return confirm('apakah anda yakin ingin menghapus article dengan title {{$data->title}}')" type="submit" class="btn btn-danger">Hapus</button>
-                               </form>
-                            </div>
-                        </div>
-                    </div>
-                @endforeach
-            </div>
 
             <!-- Pagination section with Bootstrap styling -->
             <div class="d-flex justify-content-center mt-4">
