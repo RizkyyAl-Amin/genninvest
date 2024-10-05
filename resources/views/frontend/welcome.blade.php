@@ -902,32 +902,70 @@
                 <div class="col-lg-5">
 
                     <div class="info-wrap">
-                        <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="200">
-                            <i class="bi bi-geo-alt flex-shrink-0"></i>
-                            <div>
-                                <h3>Address</h3>
-                                <p>A108 Adam Street, New York, NY 535022</p>
+                        <div class="row gy-4">
+                            <div class="col-md-6">
+                                <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="200">
+                                    <i class="bi bi-geo-alt flex-shrink-0"></i>
+                                    <div>
+                                        <?php
+                                            $kontak = DB::table('kontak')->first(); 
+                                        ?>
+                                        <h3>Address</h3>
+                                        <p>{{ $kontak->alamat }}</p>
+                                    </div>
+                                </div><!-- End Info Item -->
                             </div>
-                        </div><!-- End Info Item -->
+                            <div class="col-md-6">
+                                <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="300">
+                                    <i class="bi bi-facebook"></i>
+                                    <div>
+                                        <h3>Facebook</h3>
+                                        <p><a href="{{ $kontak->fb_url }}" target="_blank">pdbiofficial</a></p>
+                                    </div>
+                                </div><!-- End Info Item -->
+                            </div>
+                            <div class="col-md-6 mt-0">
+                                <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="400">
+                                    <i class="bi bi-envelope flex-shrink-0"></i>
+                                    <div>
+                                        <h3>Email Us</h3>
+                                        <p>{{$kontak->email}}</p>
+                                    </div>
+                                </div><!-- End Info Item -->
+                            </div>
+                            <div class="col-md-6 mt-0">
+                                <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="400">
+                                    <i class="bi bi-instagram flex-shrink-0"></i>
+                                    <div>
+                                        <h3>Instagram</h3>
+                                        <p><a href="{{ $kontak->ig_url }}" target="_blank">boashpoldibi</a></p>
+                                    </div>
+                                </div><!-- End Info Item -->
+                            </div>
+                            <div class="col-md-6 mt-0">
+                                <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="400">
+                                    <i class="bi bi-telephone flex-shrink-0"></i>
+                                    <div>
+                                        <h3>Call Us</h3>
+                                        <p>{{$kontak->no_hp}}</p>
+                                    </div>
+                                </div><!-- End Info Item -->
+                            </div>
+                            <div class="col-md-6 mt-0">
+                                <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="400">
+                                    <i class="bi bi-youtube flex-shrink-0"></i>
+                                    <div>
+                                        <h3>Youtube</h3>
+                                        <p><a href="{{ $kontak->yt_url }}" target="_blank">Politeknik Digital Boash Indonesia</a></p>
+                                    </div>
+                                </div><!-- End Info Item -->
+                            </div>
+                        </div>
 
-                        <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="300">
-                            <i class="bi bi-telephone flex-shrink-0"></i>
-                            <div>
-                                <h3>Call Us</h3>
-                                <p>+1 5589 55488 55</p>
-                            </div>
-                        </div><!-- End Info Item -->
-
-                        <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="400">
-                            <i class="bi bi-envelope flex-shrink-0"></i>
-                            <div>
-                                <h3>Email Us</h3>
-                                <p>info@example.com</p>
-                            </div>
-                        </div><!-- End Info Item -->
+                        
 
                         <iframe
-                            src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d48389.78314118045!2d-74.006138!3d40.710059!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25a22a3bda30d%3A0xb89d1fe6bc499443!2sDowntown%20Conference%20Center!5e0!3m2!1sen!2sus!4v1676961268712!5m2!1sen!2sus"
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3963.869082860281!2d106.73874229509943!3d-6.53821254162451!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69c3d3e90a6833%3A0x647ad93c3ee36083!2sBoash%20Caffe%20Politeknik%20Digital%20Boash%20Indonesia!5e0!3m2!1sid!2sid!4v1728098572516!5m2!1sid!2sid"
                             frameborder="0" style="border:0; width: 100%; height: 270px;" allowfullscreen=""
                             loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                     </div>
