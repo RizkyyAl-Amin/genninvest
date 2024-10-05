@@ -12,8 +12,17 @@ use App\Http\Controllers\Admin\DirekturController;
 use Illuminate\Support\Facades\Auth;
 
 Route::get('/', function () {
-    return view('frontend.welcome');
+    return view('frontend.welcome',["articles"=> Article::latest()->limit(5)->get()]);
 });
+
+
+
+Route::get('/article', function () {
+    return view('frontend.informasi.artikel');
+});
+
+
+
 
 Auth::routes();
 

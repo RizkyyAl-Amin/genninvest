@@ -5,7 +5,13 @@
         <div class="content-wrapper">
             <div class="row align-items-center">
                 <div class="d-flex justify-content-center">
-                    <img src="{{ asset('img/articles_images/' . $data->image) }}" alt="Thumbnail Image" class="img-thumbnail" style="width: 10rem; height: 10rem; border-radius: 0;">
+                    @if (file_exists(public_path('img/articles_images/' . $data->image)) && $data->image)
+                        <img style="width: 14rem; height: 14rem;" src="{{ asset('img/articles_images/' . $data->image) }}" class="img-fluid rounded-start" alt="...">
+                    @else
+                        <div style="width: 14rem; height: 14rem; background-color: white;" class="img-fluid rounded-start d-flex justify-content-center align-items-center">
+                            <span>No Image</span> <!-- Pesan fallback -->
+                        </div>
+                    @endif
                 </div>
             </div>
             <div class="row">

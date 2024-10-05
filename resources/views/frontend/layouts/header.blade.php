@@ -13,7 +13,14 @@
                 <li><a href="/">Profil</a></li>
                 <li><a href="/">Program Studi</a></li>
                 <li><a href="/">News</a></li>
-                <li><a href="/">Informasi</a></li>
+                <li class="dropdown"><a href="#"><span>Informasi</span> <i
+                    class="bi bi-chevron-down toggle-dropdown"></i></a>
+            <ul>
+                <li><a href="/article">Artikel</a></li>
+                <li><a href="#">Kerjasama IDUKA</a></li>
+                <li><a href="#">Kunjungan</a></li>
+            </ul>
+        </li>
                 <li><a href="/">Galeri</a></li>
                 <li><a href="/">Hubungi Kami</a></li>
                 {{-- Contoh Dropdown --}}
