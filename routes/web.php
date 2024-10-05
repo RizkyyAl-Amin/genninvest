@@ -7,11 +7,21 @@ use App\Http\Controllers\Admin\KerjasamaController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\BeritaController;
 use App\Http\Controllers\HomeController;
+use App\Models\Article;
 use Illuminate\Support\Facades\Auth;
 
 Route::get('/', function () {
-    return view('frontend.welcome');
+    return view('frontend.welcome',["articles"=> Article::latest()->limit(5)->get()]);
 });
+
+
+
+Route::get('/article', function () {
+    return view('frontend.informasi.artikel');
+});
+
+
+
 
 Auth::routes();
 
@@ -22,7 +32,7 @@ Route::middleware(['auth', 'checkrole:1'])->group(function () {
     Route::resource('/user', UserController::class);
     Route::resource('/kerjasama', KerjasamaController::class);
     Route::resource('/berita', BeritaController::class);
-    Route::resource('/article', ArticleController::class);
+    Route::resource('/be/article', ArticleController::class);
 });
 
 Route::middleware(['auth', 'checkrole:2'])->group(function () {
