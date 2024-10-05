@@ -15,8 +15,11 @@ return new class extends Migration
             $table->id();
             $table->string("image")->nullable();
             $table->string("title");
-            $table->text("text_article");
             $table->string('writer');
+            $table->text("paragraf_1");
+            $table->text("paragraf_2");
+            $table->text("paragraf_3");
+            $table->text("paragraf_4");
             // $table->string('ip_address');
             // $table->string('user_agent')->nullable();
             // $table->timestamp('visited_at');

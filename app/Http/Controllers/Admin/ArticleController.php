@@ -13,9 +13,22 @@ class ArticleController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request )
     {
-        return view("admin.article.index",["datas" => \App\Models\Article::paginate(10)]);
+
+        $search = $request->input('search');
+
+        // Cek apakah ada input pencarian
+        if ($search) {
+            // Lakukan pencarian berdasarkan title yang mengandung teks pencarian
+            $articles = Article::where('title', 'like', '%' . $search . '%')->latest()->paginate(5);
+        } else {
+            // Jika tidak ada pencarian, tampilkan semua artikel
+            $articles = Article::latest()->paginate(5);
+        }
+
+        // Kirim data artikel ke view
+        return view('admin.article.index', ["datas"=>$articles]);
     }
 
     /**
@@ -35,8 +48,11 @@ class ArticleController extends Controller
         $data = $request->validate([
             'image' => 'required|file|mimes:jpg,png,pdf|max:2048',
             "title"=> "min:6|max:100|required",
-            "text_article"=> "min:10|required",
-            "writer"=> "required"
+            "writer"=> "required",
+            "paragraf_1"=> "min:10|required",
+            "paragraf_2"=> "min:10|required",
+            "paragraf_3"=> "min:10|required",
+            "paragraf_4"=> "min:10|required",
         ]);
 
 
@@ -58,7 +74,7 @@ class ArticleController extends Controller
      */
     public function show(string $id)
     {
-        //
+        return view("admin.article.show",["data"=>Article::findOrFail(Crypt::decrypt($id))]);
     }
 
     /**
@@ -78,10 +94,13 @@ class ArticleController extends Controller
     {
         $article = Article::findOrFail(Crypt::decrypt($id));
         $data = $request->validate([
-            'image' => 'required|file|mimes:jpg,png,pdf|max:2048',
+           'image' => 'required|file|mimes:jpg,png,pdf|max:2048',
             "title"=> "min:6|max:100|required",
-            "text_article"=> "min:10|required",
-            "writer"=> "required"
+            "writer"=> "required",
+            "paragraf_1"=> "min:10|required",
+            "paragraf_2"=> "min:10|required",
+            "paragraf_3"=> "min:10|required",
+            "paragraf_4"=> "min:10|required",
         ]);
         if ($request->hasFile('image')) {
             $path = "img/articles_images/" . $article->image;
@@ -95,7 +114,11 @@ class ArticleController extends Controller
 
             $article->image = $filename;
             $article->title = $data['title'];
-            $article->text_article = $data['text_article'];
+            $article->writer = $data['writer'];
+            $article->paragraf_1 = $data['paragraf_1'];
+            $article->paragraf_2 = $data['paragraf_2'];
+            $article->paragraf_3 = $data['paragraf_3'];
+            $article->paragraf_4 = $data['paragraf_4'];
             $article->writer = $data['writer'];
             $article->save();
 
