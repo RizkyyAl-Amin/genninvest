@@ -11,8 +11,8 @@
         <div class="container">
             <div class="row gy-4">
                 <div class="col-lg-6 order-2 order-lg-1 d-flex flex-column justify-content-center" data-aos="zoom-out">
-                    <h1>Better Solutions For Your Business</h1>
-                    <p>We are team of talented designers making websites with Bootstrap</p>
+                    <h1>Politeknik Digital Boash Indonesia</h1>
+                    <p>Religious, Entrepreneurship, Global Competence</p>
                     <div class="d-flex">
                         <a href="#about" class="btn-get-started">Get Started</a>
                         <a href="https://www.youtube.com/watch?v=Y7f98aduVJ8"
@@ -71,7 +71,7 @@
           }
         }
       </script>
-                <div class="swiper-wrapper align-items-center">
+                {{-- <div class="swiper-wrapper align-items-center">
                     <div class="swiper-slide"><img src="{{ asset('arsha/assets/img/clients/client-1.png') }}"
                             class="img-fluid" alt=""></div>
                     <div class="swiper-slide"><img src="{{ asset('arsha/assets/img/clients/client-2.png') }}"
@@ -88,16 +88,16 @@
                             class="img-fluid" alt=""></div>
                     <div class="swiper-slide"><img src="{{ asset('arsha/assets/img/clients/client-8.png') }}"
                             class="img-fluid" alt=""></div>
-                </div>
+                </div> --}}
             </div>
 
         </div>
 
     </section><!-- /Clients Section -->
 
-    <section id="artikel" class="artikel section">
-        <div class="container section-title" data-aos="fade-up">
-            <h2>Artikel Terbaru</h2>
+    <section id="artikel" class="artikel d-flex justify-content-center gap-3 p-3">
+        <div class="container"  style="max-width: 60%" data-aos="fade-up">
+            <h2>Tulisan Terbaru</h2>
             @foreach ($articles as $article)
             <div class="card mb-3" style="max-width: 700px;">
                 <div class="row g-0">
@@ -122,7 +122,24 @@
 
               </div>
             @endforeach
-        </div><!-- End Section Title -->
+        </div>
+        <div style="max-width: 35%;padding:0.3rem" class="">
+
+            @foreach ($directurs as $directur)
+            <div class="card" style="max-width: 70%">
+                <img class="card-img-top" style="height: 25rem; object-position: center; background-position: center;" src="https://plus.unsplash.com/premium_photo-1682125707803-f985bb8d8b6a?q=80&w=1416&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D">
+                <div class="card-body">
+                  <h4 class="card-title text-center">{{$directur->nama}}</h4>
+                  <p class="text-secondary text-center font-weight-light">- Direktur -</p>
+                  <p class="card-text">{{$directur->sambutan}}</p>
+                </div>
+
+                <div class="card-body">
+                  <a href="#" class="card-link">Selengkapnya</a>
+                </div>
+              </div>
+            @endforeach
+        </div>
     </section>
     <!-- Contact Section -->
     <section id="contact" class="contact section">
@@ -145,9 +162,6 @@
                                 <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="200">
                                     <i class="bi bi-geo-alt flex-shrink-0"></i>
                                     <div>
-                                        <?php
-                                            $kontak = DB::table('kontak')->first();
-                                        ?>
                                         <h3>Address</h3>
                                         <p>{{ $kontak->alamat }}</p>
                                     </div>

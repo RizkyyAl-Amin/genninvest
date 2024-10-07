@@ -10,18 +10,40 @@
         <nav id="navmenu" class="navmenu">
             <ul>
                 <li><a href="/" class="active">Home</a></li>
-                <li><a href="/">Profil</a></li>
-                <li><a href="/">Program Studi</a></li>
-                <li><a href="/">News</a></li>
+                <li class="dropdown">
+                    <a href="#"><span>Profil</span> <i
+                    class="bi bi-chevron-down toggle-dropdown"></i></a>
+                    <ul>
+                        <li><a href="#">Sejarah Boash</a></li>
+                        <li><a href="#">Visi Dan Misi</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#"><span>Program Studi</span> <i
+                    class="bi bi-chevron-down toggle-dropdown"></i></a>
+                    <ul>
+                       @foreach ($prodis as $prodi)
+                       <li><a href="#">{{$prodi->nama_prodi}}</a></li>
+                       @endforeach
+                    </ul>
+                </li>
+                <li><a href="/">Berita</a></li>
                 <li class="dropdown"><a href="#"><span>Informasi</span> <i
                     class="bi bi-chevron-down toggle-dropdown"></i></a>
-            <ul>
-                <li><a href="/article">Artikel</a></li>
-                <li><a href="#">Kerjasama IDUKA</a></li>
-                <li><a href="#">Kunjungan</a></li>
-            </ul>
-        </li>
-                <li><a href="/">Galeri</a></li>
+                    <ul>
+                        <li><a href="/article">Artikel</a></li>
+                        <li><a href="#">Kerjasama IDUKA</a></li>
+                        <li><a href="#">Kunjungan</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#"><span>Galeri</span> <i
+                    class="bi bi-chevron-down toggle-dropdown"></i></a>
+                    <ul>
+                        <li><a href="#">Galeri Foto</a></li>
+                        <li><a href="#">Galeri Video</a></li>
+                    </ul>
+                </li>
                 <li><a href="/">Hubungi Kami</a></li>
                 {{-- Contoh Dropdown --}}
                 {{-- <li class="dropdown"><a href="#"><span>Dropdown</span> <i
@@ -47,7 +69,7 @@
             <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
         </nav>
 
-        <a class="btn-getstarted" href="/login">Daftar</a>
+        <a class="btn-getstarted" href="/login">Login</a>
 
     </div>
 </header>

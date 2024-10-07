@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\ArticleController;
+use App\Http\Controllers\WelcomeController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\ProdiController;
 use App\Http\Controllers\Admin\KerjasamaController;
@@ -12,9 +13,7 @@ use App\Http\Controllers\Admin\DirekturController;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Article;
 
-Route::get('/', function () {
-    return view('frontend.welcome',["articles"=> Article::latest()->limit(5)->get()]);
-});
+Route::get('/', [WelcomeController::class,"index"]);
 
 
 
