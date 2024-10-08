@@ -28,7 +28,7 @@ class ArticleController extends Controller
         }
 
         // Kirim data artikel ke view
-        return view('admin.article.index', ["datas"=>$articles]);
+        return view('admin.article.index', ["articles"=>$articles]);
     }
 
     /**

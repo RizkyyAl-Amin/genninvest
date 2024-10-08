@@ -1,70 +1,72 @@
-<!DOCTYPE html>
-<html lang="en">
+@php
+    use Illuminate\Support\Carbon;
+    // wajib ada jika include layouts.main
+    $prodis = DB::table('prodis')->get();
+    $kontak = DB::table('kontak')->first();
 
-<head>
-    <meta charset="utf-8">
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <title>Politeknik Digital Boash Indonesia</title>
-    <meta name="description" content="">
-    <meta name="keywords" content="">
+    // content
+    $articles = DB::table('articles')->latest()->paginate(10);
+    $directur = DB::table('direktur')->first()
 
-    <!-- Favicons -->
-    <link href="{{ asset('assets/images/logo-boash.png') }}" rel="icon">
-    <link href="{{ asset('assets/images/logo-boash.png') }}" rel="apple-touch-icon">
+@endphp
+@section("content")
+<section id="artikel" style="margin-top: 10rem" class="artikel d-flex justify-content-center gap-3 p-3">
+    <div class="container"  style="max-width: 60%" data-aos="fade-up">
+        <div class="d-flex gap-2 ">
+            <h2>Tulisan Terbaru</h2>
+            {{-- <form class="form-inline" action="{{route("")}}" method="get">
+                @csrf
+                <div class="d-flex align-items-center">
+                    <input class="form-control w-75" name="search" type="search" placeholder="Cari Artikel" value="{{ request('search') }}" aria-label="Search">
+                    <button class="btn btn-outline-primary" type="submit">Search</button>
+                </div>
 
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com" rel="preconnect">
-    <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Jost:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
-        rel="stylesheet">
+            </form> --}}
+        </div>
+        @foreach ($articles as $article)
+        <div class="card mb-3" style="max-width: 700px;">
+            <div class="row g-0">
+              <div class="col-md-4">
+                @if (file_exists(public_path('img/articles_images/' . $article->image)) && $article->image)
+                    <img style="width: 14rem; height: 14rem;" src="{{ asset('img/articles_images/' . $article->image) }}" class="img-fluid rounded-start" alt="...">
+                @else
+                    <div style="width: 14rem; height: 14rem; background-color: white;" class="img-fluid rounded-start d-flex justify-content-center align-items-center">
+                        <span>No Image</span> <!-- Pesan fallback -->
+                    </div>
+                @endif
 
-    <!-- Vendor CSS Files -->
-    <link href="{{ asset('arsha/assets/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('arsha/assets/vendor/bootstrap-icons/bootstrap-icons.css') }}" rel="stylesheet">
-    <link href="{{ asset('arsha/assets/vendor/aos/aos.css') }}" rel="stylesheet">
-    <link href="{{ asset('arsha/assets/vendor/glightbox/css/glightbox.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('arsha/assets/vendor/swiper/swiper-bundle.min.css') }}" rel="stylesheet">
+              </div>
+              <div class="col-md-8">
+                <div class="card-body">
+                  <a style="text-transform: capitalize;font-weight: bold;font-size:1rem;" class="card-title">{{$article->title}}</a>
+                  <p style="text-align:left;font-size:0.9rem;margin-top:0.4rem" class="card-text">{{Str::words($article->paragraf_1,25,"...")}}</p>
+                  <p style="margin-top:0.9rem " class="card-text"><small class="text-body-secondary">Updated {{ \Carbon\Carbon::parse($article->created_at)->diffForHumans() }} - oleh {{$article->writer}}</small></p>
+                </div>
+              </div>
+            </div>
 
-    <!-- Main CSS File -->
-    <link href="{{ asset('arsha/assets/css/main.css') }}" rel="stylesheet">
+          </div>
+        @endforeach
+        <div class="d-flex justify-content-center mt-4">
+            {{ $articles->onEachSide(1)->links() }}
+        </div>
+    </div>
+    <div style="max-width: 35%;padding:0.3rem" class="">
 
-    @yield('css')
+        <div class="card" style="max-width: 70%">
+            <img class="card-img-top" style="height: 25rem; object-position: center; background-position: center;" src="https://plus.unsplash.com/premium_photo-1682125707803-f985bb8d8b6a?q=80&w=1416&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D">
+            <div class="card-body">
+              <h4 class="card-title text-center">{{$directur->nama}}</h4>
+              <p class="text-secondary text-center font-weight-light">- Direktur -</p>
+              <p class="card-text">{{$directur->sambutan}}</p>
+            </div>
 
-</head>
+            <div class="card-body">
+              <a href="#" class="card-link">Selengkapnya</a>
+            </div>
+          </div>
+    </div>
 
-<body class="index-page bg-primary">
-
-    @include('frontend.layouts.header')
-
-    <main class="main">
-
-        @yield('content')
-
-    </main>
-
-
-    <!-- Scroll Top -->
-    <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i
-            class="bi bi-arrow-up-short"></i></a>
-
-    <!-- Preloader -->
-    <div id="preloader"></div>
-
-    <!-- Vendor JS Files -->
-    <script src="{{ asset('arsha/assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-    <script src="{{ asset('arsha/assets/vendor/php-email-form/validate.js') }}"></script>
-    <script src="{{ asset('arsha/assets/vendor/aos/aos.js') }}"></script>
-    <script src="{{ asset('arsha/assets/vendor/glightbox/js/glightbox.min.js') }}"></script>
-    <script src="{{ asset('arsha/assets/vendor/swiper/swiper-bundle.min.js') }}"></script>
-    <script src="{{ asset('arsha/assets/vendor/waypoints/noframework.waypoints.js') }}"></script>
-    <script src="{{ asset('arsha/assets/vendor/imagesloaded/imagesloaded.pkgd.min.js') }}"></script>
-    <script src="{{ asset('arsha/assets/vendor/isotope-layout/isotope.pkgd.min.js') }}"></script>
-
-    <!-- Main JS File -->
-    <script src="{{ asset('arsha/assets/js/main.js') }}"></script>
-
-    @yield('js')
-</body>
-
-</html>
+</section>
+@endsection
+@include('frontend.layouts.main')

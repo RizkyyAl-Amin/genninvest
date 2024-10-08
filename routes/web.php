@@ -33,7 +33,7 @@ Route::middleware(['auth', 'checkrole:1'])->group(function () {
     Route::resource('/user', UserController::class);
     Route::resource('/kerjasama', KerjasamaController::class);
     Route::resource('/berita', BeritaController::class);
-    Route::resource('/article', ArticleController::class);
+    Route::resource('/be/article', ArticleController::class);
     Route::resource('/kontak', KontakController::class);
     Route::resource('/direktur', DirekturController::class);
 });

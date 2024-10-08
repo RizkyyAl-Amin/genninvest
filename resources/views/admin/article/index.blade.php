@@ -49,7 +49,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($datas as $data)
+                                    @foreach ($articles as $data)
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
                                             <td>{{Str::words($data->title, 3, '...')}}</td>
@@ -94,7 +94,7 @@
 
             <!-- Pagination section with Bootstrap styling -->
             <div class="d-flex justify-content-center mt-4">
-                {{ $datas->onEachSide(1)->links() }}
+                {{ $articles->onEachSide(1)->links() }}
             </div>
         </div>
     </div>

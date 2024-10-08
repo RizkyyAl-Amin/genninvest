@@ -1,4 +1,6 @@
-<header id="header" class="header d-flex align-items-center fixed-top">
+<header style="@if (!Request::is("/"))
+background-color:blue;
+@endif" id="header" class="header d-flex align-items-center fixed-top">
     <div class="container-fluid container-xl position-relative d-flex align-items-center">
 
         <a href="/" class="logo d-flex align-items-center me-auto">
@@ -9,7 +11,7 @@
 
         <nav id="navmenu" class="navmenu">
             <ul>
-                <li><a href="/" class="active">Home</a></li>
+                <li><a href="/" class="{{Request::is("/") ? "active" :""}}">Home</a></li>
                 <li class="dropdown">
                     <a href="#"><span>Profil</span> <i
                     class="bi bi-chevron-down toggle-dropdown"></i></a>
@@ -69,7 +71,12 @@
             <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
         </nav>
 
-        <a class="btn-getstarted" href="/login">Login</a>
+        <a class="{{ Request::is('/') ? 'btn-getstarted' : 'btn-getstarted' }}"
+        href="/login"
+        style="{{ !Request::is('/') ? 'background-color: white; color: black;' : '' }}">
+        Login
+     </a>
+
 
     </div>
 </header>
