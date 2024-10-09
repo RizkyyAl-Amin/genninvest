@@ -1,14 +1,4 @@
-@php
-    use Illuminate\Support\Carbon;
-    // wajib ada jika include layouts.main
-    $prodis = DB::table('prodis')->get();
-    $kontak = DB::table('kontak')->first();
 
-    // content
-    $articles = DB::table('articles')->latest()->paginate(10);
-    $directur = DB::table('direktur')->first()
-
-@endphp
 @section("content")
 <section id="artikel" style="margin-top: 10rem" class="artikel d-flex justify-content-center gap-3 p-3">
     <div class="container"  style="max-width: 60%" data-aos="fade-up">
@@ -38,7 +28,12 @@
               </div>
               <div class="col-md-8">
                 <div class="card-body">
-                  <a style="text-transform: capitalize;font-weight: bold;font-size:1rem;" class="card-title">{{$article->title}}</a>
+                    <a href="{{ route('readArticle', ['title' => $article->title]) }}"
+                        style="text-transform: capitalize; font-weight: bold; font-size:1rem;"
+                        class="card-title">
+                        {{ $article->title }}
+                     </a>
+
                   <p style="text-align:left;font-size:0.9rem;margin-top:0.4rem" class="card-text">{{Str::words($article->paragraf_1,25,"...")}}</p>
                   <p style="margin-top:0.9rem " class="card-text"><small class="text-body-secondary">Updated {{ \Carbon\Carbon::parse($article->created_at)->diffForHumans() }} - oleh {{$article->writer}}</small></p>
                 </div>
@@ -58,11 +53,11 @@
             <div class="card-body">
               <h4 class="card-title text-center">{{$directur->nama}}</h4>
               <p class="text-secondary text-center font-weight-light">- Direktur -</p>
-              <p class="card-text">{{$directur->sambutan}}</p>
+              <p class="card-text">{{Str::words($directur->sambutan,20,"...")}}</p>
             </div>
 
             <div class="card-body">
-              <a href="#" class="card-link">Selengkapnya</a>
+              <a href="{{route("sambutan")}}" class="card-link">Selengkapnya</a>
             </div>
           </div>
     </div>

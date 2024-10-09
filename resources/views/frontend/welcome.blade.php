@@ -13,12 +13,12 @@
                 <div class="col-lg-6 order-2 order-lg-1 d-flex flex-column justify-content-center" data-aos="zoom-out">
                     <h1>Politeknik Digital Boash Indonesia</h1>
                     <p>Religious, Entrepreneurship, Global Competence</p>
-                    <div class="d-flex">
+                    {{-- <div class="d-flex">
                         <a href="#about" class="btn-get-started">Get Started</a>
                         <a href="https://www.youtube.com/watch?v=Y7f98aduVJ8"
                             class="glightbox btn-watch-video d-flex align-items-center"><i
                                 class="bi bi-play-circle"></i><span>Watch Video</span></a>
-                    </div>
+                    </div> --}}
                 </div>
                 <div class="col-lg-6 order-1 order-lg-2 hero-img" data-aos="zoom-out" data-aos-delay="200">
                     <img src="{{ asset('arsha/assets/img/hero-img.png') }}" class="img-fluid animated" alt="">
@@ -113,7 +113,7 @@
                   </div>
                   <div class="col-md-8">
                     <div class="card-body">
-                      <a style="text-transform: capitalize;font-weight: bold;font-size:1rem;" class="card-title">{{$article->title}}</a>
+                      <a href="{{route("readArticle",$article->title)}}" style="text-transform: capitalize;font-weight: bold;font-size:1rem;" class="card-title">{{$article->title}}</a>
                       <p style="text-align:left;font-size:0.9rem;margin-top:0.4rem" class="card-text">{{Str::words($article->paragraf_1,25,"...")}}</p>
                       <p style="margin-top:0.9rem " class="card-text"><small class="text-body-secondary">Updated {{$article->created_at->diffForHumans()}} - oleh {{$article->writer}}</small></p>
                     </div>
@@ -130,11 +130,11 @@
                 <div class="card-body">
                   <h4 class="card-title text-center">{{$directur->nama}}</h4>
                   <p class="text-secondary text-center font-weight-light">- Direktur -</p>
-                  <p class="card-text">{{$directur->sambutan}}</p>
+                  <p class="card-text">{{Str::words($directur->sambutan,20,"...")}}</p>
                 </div>
 
                 <div class="card-body">
-                  <a href="#" class="card-link">Selengkapnya</a>
+                  <a href="{{route("sambutan")}}" class="card-link">Selengkapnya</a>
                 </div>
               </div>
         </div>

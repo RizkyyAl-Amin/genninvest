@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\ArticleController;
-use App\Http\Controllers\WelcomeController;
+use App\Http\Controllers\FrontendController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\ProdiController;
 use App\Http\Controllers\Admin\KerjasamaController;
@@ -13,13 +13,15 @@ use App\Http\Controllers\Admin\DirekturController;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Article;
 
-Route::get('/', [WelcomeController::class,"index"]);
 
-
-
-Route::get('/article', function () {
-    return view('frontend.informasi.artikel');
+Route::controller(FrontendController::class)->group(function(){
+    Route::get("/","home")->name("home");
+    Route::get("/article","article")->name("article");
+    Route::get("/article/{title}","readArticle")->name("readArticle");
+    Route::get("/sambutan","sambutan")->name("sambutan");
 });
+
+
 
 
 
