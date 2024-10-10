@@ -1,5 +1,5 @@
 <header style="@if (!Request::is("/"))
-background-color:blue;
+background-color:#37517e;
 @endif" id="header" class="header d-flex align-items-center fixed-top">
     <div class="container-fluid container-xl position-relative d-flex align-items-center">
 
