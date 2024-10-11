@@ -24,12 +24,5 @@
                         Edit
                     </a>
                 </button>
-                <form class="inline" action="{{ route('direktur.destroy', [Crypt::encrypt($direktur->id)]) }}" method="POST">
-                    @csrf
-                    @method('delete')
-                    <button class="btn btn-danger" onclick="return confirm('Apakah anda yakin ingin menghapus data ini?')">
-                        Delete
-                    </button>
-                </form>
             </div>
 @endsection

@@ -9,7 +9,6 @@
                         <div class="col-12 col-xl-8 mb-4 mb-xl-0 ml-5">
                             <h3 class="font-weight-bold">Sambutan Direktur</h3>
                             <h6 class="font-weight-normal mb-2">Sambutan Direktur Politeknik Digital Boash Indonesia</h6>
-                            <a href="{{ route('direktur.create') }}" class="btn btn-primary shadow-md mb-3">Tambah Sambutan Direktur</a>
                         </div>
                     </div>
                     <div class="col-lg-12 grid-margin">
@@ -43,11 +42,6 @@
                                                                     Edit
                                                                 </a>
                                                             </button>
-                                                            <form action="{{ route('direktur.destroy', [Crypt::encrypt($direktur->id)]) }}" method="POST">
-                                                                @csrf
-                                                                @method('delete')
-                                                                <button class="btn btn-danger" onclick="return confirm('Apakah anda yakin ingin menghapus data ini?')">Delete</button>
-                                                            </form>
                                                         </div>
                                                     </td>
                                                 </tr>
