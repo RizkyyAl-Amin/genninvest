@@ -34,7 +34,7 @@
 
          <li class="nav-item">
 
-            <a class="nav-link {{ (request()->is('article*')) ? 'active' : '' }}" href="/article">
+            <a class="nav-link {{ (request()->is('article*')) ? 'active' : '' }}" href="/be/article">
                 <i class="icon-paper menu-icon"></i>
                 <span class="menu-title">Article</span>
             </a>
@@ -52,7 +52,7 @@
                 <span class="menu-title">Direktur</span>
             </a>
         </li>
-        
+
         <li class="nav-item">
 
 

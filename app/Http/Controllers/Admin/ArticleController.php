@@ -21,14 +21,14 @@ class ArticleController extends Controller
         // Cek apakah ada input pencarian
         if ($search) {
             // Lakukan pencarian berdasarkan title yang mengandung teks pencarian
-            $articles = Article::where('title', 'like', '%' . $search . '%')->latest()->paginate(5);
+            $articles = Article::where('title', 'like', '%' . $search . '%')->latest()->get();
         } else {
             // Jika tidak ada pencarian, tampilkan semua artikel
-            $articles = Article::latest()->paginate(5);
+            $articles = Article::latest()->get();
         }
 
         // Kirim data artikel ke view
-        return view('admin.article.index', ["datas"=>$articles]);
+        return view('admin.article.index', ["articles"=>$articles]);
     }
 
     /**
