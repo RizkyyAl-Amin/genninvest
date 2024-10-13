@@ -163,7 +163,7 @@
                                     <i class="bi bi-geo-alt flex-shrink-0"></i>
                                     <div>
                                         <h3>Address</h3>
-                                        <p>{{ $kontak->alamat }}</p>
+                                        <p>{{ $kontak->alamat ?? 'Belum tersedia'}}</p>
                                     </div>
                                 </div><!-- End Info Item -->
                             </div>
@@ -172,7 +172,7 @@
                                     <i class="bi bi-facebook"></i>
                                     <div>
                                         <h3>Facebook</h3>
-                                        <p><a href="{{ $kontak->fb_url }}" target="_blank">pdbiofficial</a></p>
+                                        <p><a href="{{ $kontak->fb_url ?? 'Belum tersedia'}}" target="_blank">pdbiofficial</a></p>
                                     </div>
                                 </div><!-- End Info Item -->
                             </div>
@@ -181,7 +181,7 @@
                                     <i class="bi bi-envelope flex-shrink-0"></i>
                                     <div>
                                         <h3>Email Us</h3>
-                                        <p>{{$kontak->email}}</p>
+                                        <p>{{$kontak->email ?? 'Belum tersedia'}}</p>
                                     </div>
                                 </div><!-- End Info Item -->
                             </div>
@@ -190,7 +190,7 @@
                                     <i class="bi bi-instagram flex-shrink-0"></i>
                                     <div>
                                         <h3>Instagram</h3>
-                                        <p><a href="{{ $kontak->ig_url }}" target="_blank">boashpoldibi</a></p>
+                                        <p><a href="{{ $kontak->ig_url ?? 'Belum tersedia'}}" target="_blank">boashpoldibi</a></p>
                                     </div>
                                 </div><!-- End Info Item -->
                             </div>
@@ -199,7 +199,7 @@
                                     <i class="bi bi-telephone flex-shrink-0"></i>
                                     <div>
                                         <h3>Call Us</h3>
-                                        <p>{{$kontak->no_hp}}</p>
+                                        <p>{{$kontak->no_hp ?? 'Belum tersedia'}}</p>
                                     </div>
                                 </div><!-- End Info Item -->
                             </div>
@@ -208,7 +208,7 @@
                                     <i class="bi bi-youtube flex-shrink-0"></i>
                                     <div>
                                         <h3>Youtube</h3>
-                                        <p><a href="{{ $kontak->yt_url }}" target="_blank">Politeknik Digital Boash Indonesia</a></p>
+                                        <p><a href="{{ $kontak->yt_url ?? 'Belum tersedia'}}" target="_blank">Politeknik Digital Boash Indonesia</a></p>
                                     </div>
                                 </div><!-- End Info Item -->
                             </div>

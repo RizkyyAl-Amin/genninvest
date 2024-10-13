@@ -25,9 +25,9 @@
                     <span class="sitename">Boash</span>
                 </a>
                 <div class="footer-contact pt-3">
-                    <p>{{$kontak->alamat}}</p>
-                    <p class="mt-3"><strong>Phone:</strong> <span>{{$kontak->no_hp}}</span></p>
-                    <p><strong>Email:</strong> <span>{{$kontak->email}}</span></p>
+                    <p>{{$kontak->alamat ?? 'Belum tersedia'}}</p>
+                    <p class="mt-3"><strong>Phone:</strong> <span>{{$kontak->no_hp ?? 'Belum tersedia'}}</span></p>
+                    <p><strong>Email:</strong> <span>{{$kontak->email ?? 'Belum tersedia'}}</span></p>
                 </div>
             </div>
 

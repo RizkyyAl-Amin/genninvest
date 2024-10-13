@@ -16,6 +16,11 @@ class WelcomeController extends Controller
         $prodis = Prodi::get();
         $direkturs= Direktur::limit(1)->latest()->get();
         $kontak = Kontak::first();
-        return view("frontend.welcome",["articles"=> $articles,"prodis"=>$prodis,"directurs"=>$direkturs,"kontak"=>$kontak]);
+        return view("frontend.welcome", [
+         "articles"=> $articles,
+         "prodis"=>$prodis,
+         "directurs"=>$direkturs,
+         "kontak"=>$kontak
+         ]);
    }
 }

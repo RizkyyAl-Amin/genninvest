@@ -11,13 +11,18 @@
         <ul class="navbar-nav navbar-nav-right">
             <li class="nav-item nav-profile dropdown">
                 <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
-                    <img src="assets/images/faces/face28.jpg" alt="profile" />
+                    Hi, {{ Auth::user()->name }}
+                    <img class="ml-2" src="assets/images/faces/face28.jpg" alt="profile" />
                 </a>
                 <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
+                    <a class="dropdown-item" href="/profile">
+                        <i class="ti-pen text-primary"></i>
+                        View Profile
+                    </a>
                     <a class="dropdown-item" href="{{ route('logout') }}"
                         onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                        <i class="ti-power-off text-primary"></i>
+                        document.getElementById('logout-form').submit();">
+                        <i class="ti-power-off text-danger"></i>
                         Logout
                     </a>
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
