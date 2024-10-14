@@ -114,7 +114,7 @@
                 @foreach ($kunjungans as $item)
                     <div class="card mb-3">
                         <div class="card-body">
-                            <h5 class="card-title">{{ $item->title }}</h5>
+                            <a href="{{route('readKunjungan', $item->title)}}" style="text-transform: capitalize; font-weight: bold; font-size:1rem;" class="card-title">{{ $kunjungan->title }}</a>
                             <p style="text-align:justify;font-size:0.9rem;margin-top:0.4rem" class="card-text">
                                 {!! $item->content !!}</p>
                             <p style="margin-top:0.9rem " class="card-text"><small class="text-body-secondary">Updated
