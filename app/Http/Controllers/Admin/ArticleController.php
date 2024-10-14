@@ -70,8 +70,6 @@ class ArticleController extends Controller
      */
     public function edit(string $id)
     {
-
-
         return view("admin.article.edit",["data" => Article::find(Crypt::decrypt($id))]);
     }
 

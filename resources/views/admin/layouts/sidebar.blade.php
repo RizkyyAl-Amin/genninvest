@@ -1,61 +1,64 @@
 <nav class="sidebar sidebar-offcanvas" id="sidebar">
     <ul class="nav">
         <li class="nav-item">
-            <a class="nav-link {{ (request()->is('home')) ? 'active' : '' }}" href="/home">
+            <a class="nav-link {{ request()->is('home') ? 'active' : '' }}" href="/home">
                 <i class="icon-grid menu-icon"></i>
                 <span class="menu-title">Dashboard</span>
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link {{ (request()->is('prodi*')) ? 'active' : '' }}" href="/prodi">
+            <a class="nav-link {{ request()->is('prodi*') ? 'active' : '' }}" href="/prodi">
                 <i class="icon-bar-graph menu-icon"></i>
                 <span class="menu-title">Program Studi</span>
             </a>
         </li>
         <li class="nav-item">
 
-            <a class="nav-link {{ (request()->is('kerja-sama*')) ? 'active' : '' }}" href="/kerjasama">
+            <a class="nav-link {{ request()->is('kerja-sama*') ? 'active' : '' }}" href="/kerjasama">
                 <i class="icon-grid menu-icon"></i>
                 <span class="menu-title">Kerja Sama</span>
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link {{ (request()->is('user*')) ? 'active' : '' }}" href="/user">
+            <a class="nav-link {{ request()->is('user*') ? 'active' : '' }}" href="/user">
                 <i class="icon-head menu-icon"></i>
                 <span class="menu-title">User</span>
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link {{ (request()->is('berita*')) ? 'active' : '' }}" href="/berita">
+            <a class="nav-link {{ request()->is('berita*') ? 'active' : '' }}" href="/berita">
                 <i class="ti-world menu-icon"></i>
                 <span class="menu-title">Berita</span>
             </a>
         </li>
 
-         <li class="nav-item">
+        <li class="nav-item">
 
-            <a class="nav-link {{ (request()->is('article*')) ? 'active' : '' }}" href="/be/article">
+            <a class="nav-link {{ request()->is('article*') ? 'active' : '' }}" href="/be/article">
                 <i class="icon-paper menu-icon"></i>
                 <span class="menu-title">Article</span>
             </a>
         </li>
         <li class="nav-item">
 
-            <a class="nav-link {{ (request()->is('kontak*')) ? 'active' : '' }}" href="/kontak">
+            <a class="nav-link {{ request()->is('kontak*') ? 'active' : '' }}" href="/kontak">
                 <i class="icon-paper menu-icon"></i>
                 <span class="menu-title">Kontak</span>
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link {{ (request()->is('direktur*')) ? 'active' : '' }}" href="/direktur">
+            <a class="nav-link {{ request()->is('direktur*') ? 'active' : '' }}" href="/direktur">
                 <i class="icon-head menu-icon"></i>
                 <span class="menu-title">Direktur</span>
             </a>
         </li>
-
         <li class="nav-item">
-
-
+            <a class="nav-link {{ request()->is('kunjungan*') ? 'active' : '' }}" href="/kunjungan">
+                <i class="icon-head menu-icon"></i>
+                <span class="menu-title">Kunjungan</span>
+            </a>
+        </li>
+        <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
                 <i class="icon-layout menu-icon"></i>
                 <span class="menu-title">UI Elements</span>

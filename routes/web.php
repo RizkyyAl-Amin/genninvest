@@ -2,18 +2,17 @@
 
 use App\Http\Controllers\FrontendController;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Auth;
-
-use App\Http\Controllers\HomeController;
-
-use App\Http\Controllers\Admin\ArticleController;
-use App\Http\Controllers\Admin\BeritaController;
-use App\Http\Controllers\Admin\DirekturController;
-use App\Http\Controllers\Admin\KerjasamaController;
-use App\Http\Controllers\Admin\KontakController;
 use App\Http\Controllers\Admin\ProdiController;
-use App\Http\Controllers\Admin\ProfileController;
+use App\Http\Controllers\Admin\KerjasamaController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\BeritaController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Admin\KontakController;
+use App\Http\Controllers\Admin\DirekturController;
+use App\Http\Controllers\Admin\KunjunganController;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\Admin\ArticleController;
+use App\Http\Controllers\Admin\ProfileController;
 
 use App\Models\Article;
 
@@ -24,10 +23,6 @@ Route::controller(FrontendController::class)->group(function(){
     Route::get("/article/{title}","readArticle")->name("readArticle");
     Route::get("/sambutan","sambutan")->name("sambutan");
 });
-
-
-
-
 
 
 Auth::routes();
@@ -49,6 +44,7 @@ Route::middleware(['auth', 'checkrole:1'])->group(function () {
     Route::resource('/prodi', ProdiController::class);
     Route::resource('/profile', ProfileController::class);
     Route::resource('/user', UserController::class);
+    Route::resource('/kunjungan', KunjunganController::class);
 });
 
 Route::middleware(['auth', 'checkrole:2'])->group(function () {
