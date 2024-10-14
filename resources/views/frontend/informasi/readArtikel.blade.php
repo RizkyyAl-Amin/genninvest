@@ -56,10 +56,7 @@
                 @endif
                 <div class="card-body">
                   <h5 class="card-title">{{$article->title}}</h5>
-                  <p style="text-align:left;font-size:0.9rem;margin-top:0.4rem" class="card-text">{{$article->paragraf_1}}</p>
-                  <p style="text-align:left;font-size:0.9rem;margin-top:0.4rem" class="card-text">{{$article->paragraf_2}}</p>
-                  <p style="text-align:left;font-size:0.9rem;margin-top:0.4rem" class="card-text">{{$article->paragraf_3}}</p>
-                  <p style="text-align:left;font-size:0.9rem;margin-top:0.4rem" class="card-text">{{$article->paragraf_4}}</p>
+                  <p style="text-align:left;font-size:0.9rem;margin-top:0.4rem" class="card-text">{{strip_tags($article->text_content)}}</p>
                   <p style="margin-top:0.9rem " class="card-text"><small class="text-body-secondary">Updated {{ \Carbon\Carbon::parse($article->created_at)->diffForHumans() }} - oleh {{$article->writer}}</small></p>
                 </div>
               </div>

@@ -31,7 +31,7 @@
                                         <td class="text-center">{{ $loop->iteration }}.</td>
                                         <td>{{ Str::words($article->title , 3, "...") }}</td>
                                         <td>{{ $article->writer }}</td>
-                                        <td>{{ Str::words($article->paragraf_1 , 3, "...") }}</td>
+                                        <td>{{ Str::words(strip_tags($article->text_content) , 3, "...") }}</td>
                                         <td class="text-center d-flex">
                                             <a style="mr-2" href="{{ route('article.edit', [Crypt::encrypt($article->id)]) }}"
                                                 class="btn btn-primary">

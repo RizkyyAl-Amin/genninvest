@@ -145,7 +145,7 @@
                         <div class="col-11 col-md-8 order-0 order-md-1">
                             <div class="card-body">
                                 <a href="{{route('readArticle', $article->title)}}" style="text-transform: capitalize; font-weight: bold; font-size:1rem;" class="card-title">{{ $article->title }}</a>
-                                <p style="text-align:left; font-size:0.9rem; margin-top:1.4rem;" class="card-text">{{ Str::words($article->paragraf_1, 25, '...') }}</p>
+                                <p style="text-align:left; font-size:0.9rem; margin-top:1.4rem;" class="card-text">{{ Str::words(strip_tags($article->text_content), 25, '...') }}</p>
                                 <p style="margin-top:0.9rem;" class="card-text"><small class="text-body-secondary">Updated {{ $article->created_at->diffForHumans() }} - oleh {{ $article->writer }}</small></p>
                             </div>
                         </div>

@@ -5,7 +5,6 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\WelcomeController;
 
 use App\Http\Controllers\Admin\ArticleController;
 use App\Http\Controllers\Admin\BeritaController;
@@ -37,7 +36,6 @@ Auth::routes();
 Route::middleware(['auth', 'checkrole:1'])->group(function () {
     Route::get('/home', [HomeController::class, 'index'])->name('home');
 
-    Route::resource('/article', ArticleController::class);
     Route::resource('/berita', BeritaController::class);
     Route::resource('/prodi', ProdiController::class);
     Route::resource('/user', UserController::class);

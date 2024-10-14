@@ -20,10 +20,7 @@ class ArticleFactory extends Factory
            'image' => $this->faker->imageUrl(),
             'title' => $this->faker->sentence(),
             'writer' => $this->faker->name(),
-            'paragraf_1' => $this->faker->paragraphs(2, true),
-            'paragraf_2' => $this->faker->paragraphs(3, true),
-            'paragraf_3' => $this->faker->paragraphs(4, true),
-            'paragraf_4' => $this->faker->paragraphs(3, true),
+            'text_content' => $this->faker->paragraphs(10, true),
         ];
     }
 }

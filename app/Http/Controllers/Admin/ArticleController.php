@@ -16,16 +16,7 @@ class ArticleController extends Controller
     public function index(Request $request )
     {
 
-        $search = $request->input('search');
-
-        // Cek apakah ada input pencarian
-        if ($search) {
-            // Lakukan pencarian berdasarkan title yang mengandung teks pencarian
-            $articles = Article::where('title', 'like', '%' . $search . '%')->latest()->get();
-        } else {
-            // Jika tidak ada pencarian, tampilkan semua artikel
-            $articles = Article::latest()->get();
-        }
+        $articles = Article::latest()->get();
 
         // Kirim data artikel ke view
         return view('admin.article.index', ["articles"=>$articles]);
@@ -49,10 +40,7 @@ class ArticleController extends Controller
             'image' => 'required|file|mimes:jpg,png,pdf|max:2048',
             "title"=> "min:6|max:100|required",
             "writer"=> "required",
-            "paragraf_1"=> "min:10|required",
-            "paragraf_2"=> "min:10|required",
-            "paragraf_3"=> "min:10|required",
-            "paragraf_4"=> "min:10|required",
+            "text_content"=> "min:10|required",
         ]);
 
 
@@ -97,10 +85,7 @@ class ArticleController extends Controller
            'image' => 'required|file|mimes:jpg,png,pdf|max:2048',
             "title"=> "min:6|max:100|required",
             "writer"=> "required",
-            "paragraf_1"=> "min:10|required",
-            "paragraf_2"=> "min:10|required",
-            "paragraf_3"=> "min:10|required",
-            "paragraf_4"=> "min:10|required",
+            "text_content"=> "min:10|required",
         ]);
         if ($request->hasFile('image')) {
             $path = "img/articles_images/" . $article->image;
@@ -115,10 +100,7 @@ class ArticleController extends Controller
             $article->image = $filename;
             $article->title = $data['title'];
             $article->writer = $data['writer'];
-            $article->paragraf_1 = $data['paragraf_1'];
-            $article->paragraf_2 = $data['paragraf_2'];
-            $article->paragraf_3 = $data['paragraf_3'];
-            $article->paragraf_4 = $data['paragraf_4'];
+            $article->text_content = $data['text_content'];
             $article->writer = $data['writer'];
             $article->save();
 
