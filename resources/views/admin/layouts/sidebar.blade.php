@@ -53,7 +53,7 @@
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link {{ request()->is('kunjungan*') ? 'active' : '' }}" href="/kunjungan">
+            <a class="nav-link {{ request()->is('kunjungans*') ? 'active' : '' }}" href="/kunjungans">
                 <i class="icon-head menu-icon"></i>
                 <span class="menu-title">Kunjungan</span>
             </a>

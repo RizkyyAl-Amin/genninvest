@@ -22,6 +22,8 @@ Route::controller(FrontendController::class)->group(function(){
     Route::get("/article","article")->name("article");
     Route::get("/article/{title}","readArticle")->name("readArticle");
     Route::get("/sambutan","sambutan")->name("sambutan");
+    Route::get("kunjungan", "kunjungan")->name('kunjungan');
+    Route::get("/kunjungan/{title}","readKunjungan")->name("readKunjungan");
 });
 
 
@@ -44,7 +46,7 @@ Route::middleware(['auth', 'checkrole:1'])->group(function () {
     Route::resource('/prodi', ProdiController::class);
     Route::resource('/profile', ProfileController::class);
     Route::resource('/user', UserController::class);
-    Route::resource('/kunjungan', KunjunganController::class);
+    Route::resource('/kunjungans', KunjunganController::class);
 });
 
 Route::middleware(['auth', 'checkrole:2'])->group(function () {

@@ -13,7 +13,7 @@ class KunjunganController extends Controller
     public function index()
     {
 
-        $kunjungans = Kunjungan::latest()->paginate(10);
+        $kunjungans = Kunjungan::latest()->get();
         return view('admin.kunjungan.index', [
             'kunjungans' => $kunjungans
         ]);
@@ -44,10 +44,10 @@ class KunjunganController extends Controller
         Kunjungan::create([
             'title' => $request->title,
             'content' => $request->content,
-            'writer' => Auth::user()->name,
+            'user_id' => Auth::user()->id,
             'image' => $data['image']
         ]);
-        return redirect()->route('kunjungan.index')->with('success', 'Data berhasil diupload dan disimpan!');
+        return redirect()->route('kunjungans.index')->with('success', 'Data berhasil diupload dan disimpan!');
     }
 
     public function show(string $id)
@@ -85,7 +85,7 @@ class KunjunganController extends Controller
         $data = [
             'title' => $request->title,
             'content' => $request->content,
-            'writer' => Auth::user()->name,
+            'user_id' => Auth::user()->id,
         ];
 
         // Jika gambar baru di-upload
@@ -108,7 +108,7 @@ class KunjunganController extends Controller
         $kunjungan->update($data);
 
         // Redirect ke halaman index dengan pesan sukses
-        return redirect()->route('kunjungan.index')->with('success', 'Data berhasil diperbarui');
+        return redirect()->route('kunjungans.index')->with('success', 'Data berhasil diperbarui');
     }
 
     public function destroy(string $id)
@@ -126,7 +126,10 @@ class KunjunganController extends Controller
 
         $kunjungan->delete();
 
-        return redirect()->route('kunjungan.index')->with('success', 'Data berhasil dihapus!');
+        return response()->json([
+            'success' => true,
+            'message' => 'Data berhasil dihapus!',
+        ]);
     }
 
 }

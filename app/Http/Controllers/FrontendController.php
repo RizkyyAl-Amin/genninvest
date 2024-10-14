@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Article;
 use App\Models\Direktur;
 use App\Models\Kontak;
+use App\Models\Kunjungan;
 use App\Models\Prodi;
 use Illuminate\Http\Request;
 
@@ -41,5 +42,24 @@ class FrontendController extends Controller
         $kontak = Kontak::first();
         $directur = Direktur::first();
         return view("frontend.sambutan.sambutan",compact("prodis","kontak","directur"));
+   }
+   public function kunjungan(){
+     $kunjungans = Kunjungan::latest()->paginate(10);
+     $directur = Direktur::first();
+     $prodis = Prodi::get();
+     return view("frontend.informasi.kunjungan", compact("kunjungans","directur", "prodis"));
+   }
+
+   public function readKunjungan($title){
+          $prodis = Prodi::get();
+          $kontak = Kontak::first();
+          $directur = Direktur::first();
+          $kunjungans = Kunjungan::inRandomOrder()->limit(5)->get();
+          $kunjungan = Kunjungan::where("title",$title)->first();
+
+          if($kunjungan){
+               return view('frontend.informasi.readKunjungan', compact("prodis","kontak","directur","kunjungans","kunjungan"));
+          }
+
    }
 }

@@ -35,7 +35,7 @@ background-color:#37517e;
                     <ul>
                         <li><a href="/article">Artikel</a></li>
                         <li><a href="#">Kerjasama IDUKA</a></li>
-                        <li><a href="#">Kunjungan</a></li>
+                        <li><a href="{{route('kunjungan')}}">Kunjungan</a></li>
                     </ul>
                 </li>
                 <li class="dropdown">

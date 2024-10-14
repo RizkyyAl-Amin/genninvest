@@ -1,73 +1,102 @@
 @extends('admin.layouts.main')
 
-@section('title', 'Data Kunjungan')
+@section('title', 'Data Kunjunan')
+
+@section('css')
+    <style>
+        .custom-swal-height {
+            height: 350px;
+            max-height: 80vh;
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous">
+    </script>
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+@endsection
 
 @section('content')
-    <div class="main-panel">
-        <div class="content-wrapper">
-            <div class="row">
-                <div class="col-md-12 grid-margin">
-                    <div class="row align-items-center">
-                        <div class="col-12 col-xl-8 mb-2 mb-xl-0">
-                            <h3 class="font-weight-bold">Tambah Data Kunjungan</h3>
-                        </div>
+    <div class="content-wrapper">
+        <div class="row">
+            <div class="col-lg-12 grid-margin stretch-card">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Data Kunjungan</h4>
+                        <form action="{{ route('kunjungans.store')}}" method="POST" style="width: 100%;" enctype="multipart/form-data">
+                            @csrf
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="title">Title</label>
+                                    <input type="text" class="form-control" id="title" name="title"
+                                        placeholder="Title" value="">
+                                    @error('title')
+                                        <p class="mt-2 text-sm text-danger">
+                                            {{ $message }}
+                                        </p>
+                                    @enderror
+
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="user_id">Writer</label>
+                                    <input type="text" name="user_id" value="{{ Auth::user()->name}}" class="form-control" id="user_id" readonly>
+                                    @error('user_id')
+                                        <p class="mt-2 text-sm text-danger">
+                                            {{ $message }}
+                                        </p>
+                                    @enderror
+                                </div>
+
+                            </div>
+                            <div class="form-group">
+                                <label for="content">Content</label>
+                                <textarea class="form-control" id="content" name="content" rows="4"
+                                    placeholder="Content..."></textarea>
+                                @error('text_content')
+                                    <p class="mt-2 text-sm text-red-600">
+                                        {{ $message }}
+                                    </p>
+                                @enderror
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group col-md-12">
+                                    <label for="image">Image</label>
+                                    <input type="file" name="image" class="form-control" id="image">
+                                    @error('image')
+                                        <p class="mt-2 text-sm text-danger">
+                                            {{ $message }}
+                                        </p>
+                                    @enderror
+                                </div>
+
+                            </div>
+
+                            <button type="submit" class="btn btn-primary">Kirim</button>
+                        </form>
                     </div>
                 </div>
-                <form action="{{ route('kunjungan.store') }}" method="POST" style="width: 100%;"
-                    enctype="multipart/form-data">
-                    @csrf
-                    <div class="form-row">
-                        <div class="form-group col-sm-12 col-md-6">
-                            <label for="title">Judul</label>
-                            <input type="text" class="form-control" id="title" name="title" placeholder="Judul" value="{{ old('title') }}">
-                            @error('title')
-                                <p class="mt-2 text-sm text-danger">{{ $message }}</p>
-                            @enderror
-                        </div>
-                        <div class="form-group col-sm-12 col-md-6">
-                            <label for="writer">Penulis</label>
-                            <input type="text" class="form-control" id="writer" name="writer"
-                                value="{{ auth()->user()->name }}" readonly>
-                            @error('writer')
-                                <p class="mt-2 text-sm text-danger">{{ $message }}</p>
-                            @enderror
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="content">Konten</label>
-                        <textarea rows="5" name="content" cols="30" type="text" class="form-control" id="content"placeholder="Konten">{{ old('content') }}</textarea>
-                        @error('content')
-                            <p class="mt-2 text-sm text-danger">
-                                {{ $message }}
-                            </p>
-                        @enderror
-                    </div>
-
-                    <div class="form-row">
-                        <div class="form-group col-12">
-                            <label for="image">Gambar</label>
-                            <input type="file" name="image" class="form-control" id="image">
-                            @error('image')
-                                <p class="mt-2 text-sm text-danger">
-                                    {{ $message }}
-                                </p>
-                            @enderror
-                        </div>
-                    </div>
-
-                    <button type="submit" class="btn btn-primary">Kirim</button>
-                    <a href="{{route('kunjungan.index')}}" class="btn btn-info">Back</a>
-                </form>
-
             </div>
         </div>
-        <script src="https://cdn.ckeditor.com/ckeditor5/39.0.1/classic/ckeditor.js"></script>
-        <script>
-            ClassicEditor
-                .create(document.querySelector('#content'))
-                .catch(error => {
-                    console.error(error);
-                });
-        </script>
-
-    @endsection
+    </div>
+@endsection
+@section('js')
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#content').summernote({
+                tabsize: 2,
+                height: 120,
+                toolbar: [
+                    ['style', ['style']],
+                    ['font', ['bold', 'underline', 'clear']],
+                    ['color', ['color']],
+                    ['para', ['ul', 'ol', 'paragraph']],
+                    ['table', ['table']],
+                    ['insert', ['link']],
+                    ['view', ['fullscreen', 'codeview', 'help']]
+                ]
+            });
+        });
+    </script>
+@endsection

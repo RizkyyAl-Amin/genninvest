@@ -29,7 +29,8 @@ class DatabaseSeeder extends Seeder
             KerjasamaSeeder::class,
             ProdiSeeder::class,
             KontakSeeder::class,
-            DirecturSeeder::class
+            DirecturSeeder::class,
+            KunjunganSeeder::class
         ]);
 
     }

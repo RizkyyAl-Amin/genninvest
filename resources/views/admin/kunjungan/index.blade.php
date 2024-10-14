@@ -1,76 +1,56 @@
-@extends("admin.layouts.main")
-@section('title', 'Data Kunjungan')
+@extends('admin.layouts.main')
+
+@section('title', 'Data Kunjunan')
+
+@section('css')
+    <style>
+        .custom-swal-height {
+            height: 350px;
+            max-height: 80vh;
+        }
+    </style>
+@endsection
+
 @section('content')
-    <div class="main-panel">
-        <div class="content-wrapper">
-            <div class="row">
-                <div class="col-md-12 grid-margin">
-                    <div class="row align-items-center">
-                        <div class="col-12 col-xl-8 mb-4 mb-xl-0 ml-5">
-                            <h3 class="font-weight-bold">Kunjungan</h3>
-                            <h6 class="font-weight-normal mb-2">Seluruh data Kunjungan</h6>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div style="display: flex;justify-content:space-evenly" class="row mt-1 mb-3">
-                <div class="col-md-3 mb-2">
-                    <a href="{{ route('kunjungan.create') }}" class="btn btn-primary btn-block shadow-md">Tambah Kunjungan</a>
-                </div>
-                <div class="col-md-7">
-                    <form class="form-inline" action="{{route("kunjungan.index")}}" method="get">
-                        @csrf
-                        <div class="input-group w-100">
-                            <input class="form-control w-75 " name="search" type="search" placeholder="Cari Kunjungan" value="{{ request('search') }}" aria-label="Search">
-                            <div class="input-group-append">
-                                <button class="btn btn-outline-primary" type="submit">Search</button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-
-            <div class="col-lg-12 grid-margin">
+    <div class="content-wrapper">
+        <div class="row">
+            <div class="col-lg-12 grid-margin stretch-card">
                 <div class="card">
                     <div class="card-body">
-                        <div class="table-responsive">
-                            <table class="table table-hover" id="data-table-prodi">
+                        <h4 class="card-title">Data Kunjungan</h4>
+                        <div style="float: right">
+                            <a href="{{ route('kunjungans.create') }}" class="btn btn-success btn-sm">
+                                Tambah Data
+                            </a>
+                        </div>
+                        <div class="table-responsive pt-3">
+                            <table class="table table-bordered" id="data-table">
                                 <thead>
-                                    <tr>
-                                        <th>Nomor</th>
-                                        <th>Judul</th>
-                                        <th>Teks Artikel</th>
-                                        <th>Penulis</th>
-                                        <th>Aksi</th>
+                                    <tr class="text-center">
+                                        <th class="text-center" width="50">No.</th>
+                                        <th>Title</th>
+                                        <th>Content</th>
+                                        <th>Writer</th>
+                                        <th class="text-center" width="100">Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($kunjungans as $kunjungan )
-                                        <tr>
-                                            <td>{{ $loop->iteration }}</td>
-                                            <td>{{Str::words($kunjungan->title, 2, '...')}}</td><td>
-                                                {!!Str::words($kunjungan->content, 2, '...')!!}
-                                            </td>
-                                            <td>{{ $kunjungan->writer}}</td>
-                                            <td>
-                                                <div class="d-flex">
-                                                    <button class="btn btn-info" style="margin-right: 7px;">
-                                                        <a href="{{ route('kunjungan.show', [Crypt::encrypt($kunjungan->id)]) }}"style="text-decoration: none; color: white;">
-                                                            View
-                                                        </a>
-                                                    </button>
-                                                    <button class="btn btn-primary" style="margin-right: 7px;">
-                                                        <a style="color: white;text-decoration:none" href="{{ route('kunjungan.edit', [Crypt::encrypt($kunjungan->id)])}}">
-                                                            Edit
-                                                        </a>
-                                                    </button>
-                                                    <form action="{{ route('kunjungan.destroy', [Crypt::encrypt($kunjungan->id)])}}" method="post">
-                                                        @csrf
-                                                        @method("delete")
-                                                        <button onclick="return confirm('Apakah anda yakin ingin menghapus data ini?')" type="submit" class="btn btn-danger">Hapus</button>
-                                                   </form>
-                                                </div>
+                                    @foreach ($kunjungans as $kunjungan)
+                                        <tr id="index_{{ $kunjungan->id }}">
+                                            <td class="text-center">{{ $loop->iteration }}.</td>
+                                            <td>{{ Str::words(strip_tags($kunjungan->title), 3, "...") }}</td>
+                                            <td>{{ Str::words(strip_tags($kunjungan->content) , 3, "...") }}</td>
+                                            <td>{{ $kunjungan->user->name }}</td>
+                                            <td class="text-center">
+                                                <a href="{{ route('kunjungans.edit', [Crypt::encrypt($kunjungan->id)]) }}"
+                                                    class="btn btn-primary">
+                                                    Edit
+                                                </a>
+                                                <a href="javascript:void(0)" class="btn btn-danger" id="deleteKunjungan"
+                                                    data-id="{{ Crypt::encrypt($kunjungan->id) }}"
+                                                    data-original-id="{{ $kunjungan->id }}">
+                                                    Hapus
+                                                </a>
                                             </td>
                                         </tr>
                                     @endforeach
@@ -80,12 +60,57 @@
                     </div>
                 </div>
             </div>
-
-
-            <!-- Pagination section with Bootstrap styling -->
-            {{-- <div class="d-flex justify-content-center mt-4">
-                {{ $datas->onEachSide(1)->links() }}
-            </div> --}}
         </div>
     </div>
+@endsection
+
+@section('js')
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#data-table').DataTable();
+        })
+    </script>
+    <script>
+        $('body').on('click', '#deleteKunjungan', function() {
+            let encrypted_id = $(this).data('id'); // Encrypted ID for request
+            let original_id = $(this).data('original-id'); // Original ID for element removal
+            let token = $("meta[name='csrf-token']").attr("content");
+
+            swal.fire({
+                title: 'Apakah kamu yakin?',
+                text: "Data tidak dapat dikembalikan",
+                icon: 'warning',
+                showCancelButton: true,
+                cancelButtonText: 'Batal',
+                confirmButtonText: 'Ya, hapus!',
+                customClass: {
+                    popup: 'custom-swal-height'
+                }
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        url: `/kunjungans/${encrypted_id}`,
+                        type: "DELETE",
+                        cache: false,
+                        data: {
+                            "_token": token
+                        },
+                        success: function(response) {
+                            Swal.fire({
+                                type: 'success',
+                                icon: 'success',
+                                title: `${response.message}`,
+                                showConfirmButton: true,
+                                timer: 3000
+                            });
+
+                            // Hapus elemen tabel berdasarkan ID asli
+                            $(`#index_${original_id}`).remove();
+                        }
+                    });
+                }
+            });
+        });
+    </script>
 @endsection
