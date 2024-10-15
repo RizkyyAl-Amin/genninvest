@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string("image")->nullable();
             $table->string("title");
-            $table->string('writer');
+            $table->foreignId('user_id')->constrained("users")->onDelete("cascade");
             $table->text("text_content");
             // $table->string('ip_address');
             // $table->string('user_agent')->nullable();

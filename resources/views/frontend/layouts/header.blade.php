@@ -72,8 +72,7 @@ background-color:#37517e;
         </nav>
 
         <a class="{{ Request::is('/') ? 'btn-getstarted' : 'btn-getstarted' }}"
-        href="/login"
-        style="{{ !Request::is('/') ? 'background-color: white; color: black;' : '' }}">
+        href="/login">
         Login
      </a>
 

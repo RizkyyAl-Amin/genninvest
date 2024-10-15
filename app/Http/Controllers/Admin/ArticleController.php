@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Article;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\File;
 
@@ -39,7 +40,7 @@ class ArticleController extends Controller
         $data = $request->validate([
             'image' => 'required|file|mimes:jpg,png,pdf|max:2048',
             "title"=> "min:6|max:100|required",
-            "writer"=> "required",
+            "user_id"=> "required",
             "text_content"=> "min:10|required",
         ]);
 
@@ -52,7 +53,14 @@ class ArticleController extends Controller
             $file->move(public_path('img/articles_images'), $filename);
             $data["image"] = $filename;
         }
-        Article::create($data);
+        Article::create([
+            "image"=> $data["image"],
+            "title"=> $request->title,
+            "text_content"=> $request->text_content,
+            "user_id"=> Auth::user()->id
+
+
+        ]);
         return redirect()->route("article.index")->with('success', 'Article berhasil diupload dan disimpan!');
 
     }
@@ -82,7 +90,7 @@ class ArticleController extends Controller
         $data = $request->validate([
            'image' => 'required|file|mimes:jpg,png,pdf|max:2048',
             "title"=> "min:6|max:100|required",
-            "writer"=> "required",
+           "user_id"=> "required",
             "text_content"=> "min:10|required",
         ]);
         if ($request->hasFile('image')) {
@@ -97,9 +105,8 @@ class ArticleController extends Controller
 
             $article->image = $filename;
             $article->title = $data['title'];
-            $article->writer = $data['writer'];
+            $article->user_id = Auth::user()->id;
             $article->text_content = $data['text_content'];
-            $article->writer = $data['writer'];
             $article->save();
 
             return redirect()->route('article.index')->with('success', 'Artikel berhasil diperbarui!');

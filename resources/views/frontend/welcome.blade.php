@@ -129,7 +129,9 @@
     <section style="width: 100%" id="artikel" class="artikel d-flex justify-content-center gap-3 p-3">
         <div class="row col-12 col-md-11 col-lg-10">
             <div class="container col-10 col-md-8 col-lg-8" data-aos="fade-up">
-                <h2>Tulisan Terbaru</h2>
+                <div class="mb-5" style="border-bottom: 1px solid black;">
+                    <h2>Tulisan Terbaru</h2>
+                </div>
                 @foreach ($articles as $article)
                 <div class="card mb-3" style="max-width: 100%;">
                     <div class="row g-0">
