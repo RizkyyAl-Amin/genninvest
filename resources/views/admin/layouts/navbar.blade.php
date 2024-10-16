@@ -1,8 +1,8 @@
 <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
     <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-        <a class="navbar-brand brand-logo mr-5" href="/home"><img src="assets/images/logo-boash.png" class="mr-2"
+        <a class="navbar-brand brand-logo mr-5" href="/home"><img src="{{ asset('assets/images/logo-boash.png')}}" class="mr-2"
                 alt="logo" /></a>
-        <a class="navbar-brand brand-logo-mini" href="/home"><img src="assets/images/logo-boash.png" alt="logo" /></a>
+        <a class="navbar-brand brand-logo-mini" href="/home"><img src="{{ asset('assets/images/logo-boash.png')}}" alt="logo" /></a>
     </div>
     <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
         <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
@@ -11,13 +11,18 @@
         <ul class="navbar-nav navbar-nav-right">
             <li class="nav-item nav-profile dropdown">
                 <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
-                    <img src="assets/images/faces/face28.jpg" alt="profile" />
+                    Hi, {{ Auth::user()->name }}
+                    <img class="ml-2" src="assets/images/faces/face28.jpg" alt="profile" />
                 </a>
                 <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
+                    <a class="dropdown-item" href="/profile">
+                        <i class="ti-pen text-primary"></i>
+                        View Profile
+                    </a>
                     <a class="dropdown-item" href="{{ route('logout') }}"
                         onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                        <i class="ti-power-off text-primary"></i>
+                        document.getElementById('logout-form').submit();">
+                        <i class="ti-power-off text-danger"></i>
                         Logout
                     </a>
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">

@@ -1,13 +1,12 @@
 <?php
 
 namespace Database\Factories;
-
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Article>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Kunjungan>
  */
-class ArticleFactory extends Factory
+class KunjunganFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -17,10 +16,10 @@ class ArticleFactory extends Factory
     public function definition(): array
     {
         return [
-           'image' => $this->faker->imageUrl(),
             'title' => $this->faker->sentence(),
-           'user_id' => $this->faker->numberBetween(1,2),
-            'text_content' => $this->faker->paragraphs(10, true),
+            'content' => $this->faker->paragraph(8, true),
+            'user_id' => $this->faker->numberBetween(1,2),
+            'image' => $this->faker->imageUrl(),
         ];
     }
 }

@@ -19,8 +19,8 @@
                             <thead>
                                 <tr class="text-center">
                                     <th class="text-center" width="50">No.</th>
-                                    <th>Title</th>
-                                    <th>Writer</th>
+                                    <th>Judul</th>
+                                    <th>Penulis</th>
                                     <th>Paragraf Utana</th>
                                     <th class="text-center" width="100">Aksi</th>
                                 </tr>
@@ -30,8 +30,8 @@
                                     <tr id="index_{{ $article->id }}">
                                         <td class="text-center">{{ $loop->iteration }}.</td>
                                         <td>{{ Str::words($article->title , 3, "...") }}</td>
-                                        <td>{{ $article->writer }}</td>
-                                        <td>{{ Str::words($article->paragraf_1 , 3, "...") }}</td>
+                                        <td>{{ $article->user->name }}</td>
+                                        <td>{{ Str::words(strip_tags($article->text_content) , 3, "...") }}</td>
                                         <td class="text-center d-flex">
                                             <a style="mr-2" href="{{ route('article.edit', [Crypt::encrypt($article->id)]) }}"
                                                 class="btn btn-primary">

@@ -35,7 +35,7 @@ background-color:#37517e;
                         <li><a href="/article">Artikel</a></li>
                         <li><a href="/Berita">Berita</a></li>
                         <li><a href="#">Kerjasama IDUKA</a></li>
-                        <li><a href="#">Kunjungan</a></li>
+                        <li><a href="{{route('kunjungan')}}">Kunjungan</a></li>
                     </ul>
                 </li>
                 <li class="dropdown">
@@ -72,8 +72,7 @@ background-color:#37517e;
         </nav>
 
         <a class="{{ Request::is('/') ? 'btn-getstarted' : 'btn-getstarted' }}"
-        href="/login"
-        style="{{ !Request::is('/') ? 'background-color: white; color: black;' : '' }}">
+        href="/login">
         Login
      </a>
 

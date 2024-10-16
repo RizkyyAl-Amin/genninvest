@@ -6,12 +6,14 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class Article extends Model
+class Kunjungan extends Model
 {
     use HasFactory;
-    protected $fillable = ["title","text_content","image","user_id"];
 
-    public function user() :BelongsTo {
-        return $this->BelongsTo(User::class);
+    protected $guarded = ['id'];
+
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
     }
 }

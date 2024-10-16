@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Article;
 use App\Models\Direktur;
 use App\Models\Kontak;
+use App\Models\Kunjungan;
 use App\Models\Prodi;
 use App\Models\Berita;
 
@@ -54,7 +55,7 @@ class FrontendController extends Controller
           $prodis = Prodi::get();
           $kontak = Kontak::first();
 
-          $beritas = Berita::latest()->paginate(10);  
+          $beritas = Berita::latest()->paginate(10);
           $directur = Direktur::first();
           return view("frontend.berita.berita", compact("prodis", "kontak", "beritas", "directur"));
      }
@@ -63,10 +64,31 @@ class FrontendController extends Controller
      {
           $prodis = Prodi::get();
           $kontak = Kontak::first();
-          $berita = Berita::where("judul", $title)->first();  
+          $berita = Berita::where("judul", $title)->first();
           $directur = Direktur::first();
           if ($berita) {
                return view("frontend.berita.halaman-berita", compact("prodis", "kontak", "berita", "directur"));
+          }
+     }
+
+     public function kunjungan()
+     {
+          $kunjungans = Kunjungan::latest()->paginate(10);
+          $directur = Direktur::first();
+          $prodis = Prodi::get();
+          return view("frontend.informasi.kunjungan", compact("kunjungans", "directur", "prodis"));
+     }
+
+     public function readKunjungan($title)
+     {
+          $prodis = Prodi::get();
+          $kontak = Kontak::first();
+          $directur = Direktur::first();
+          $kunjungans = Kunjungan::inRandomOrder()->limit(5)->get();
+          $kunjungan = Kunjungan::where("title", $title)->first();
+
+          if ($kunjungan) {
+               return view('frontend.informasi.readKunjungan', compact("prodis", "kontak", "directur", "kunjungans", "kunjungan"));
           }
      }
 }

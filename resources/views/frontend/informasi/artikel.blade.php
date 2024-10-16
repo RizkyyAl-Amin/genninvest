@@ -36,7 +36,9 @@
 <section id="artikel" style="margin-top: 10rem" class="artikel d-flex justify-content-center gap-3 p-3">
     <div class="row col-12 col-md-11 col-lg-10">
         <div class="container col-10 col-md-8 col-lg-8" data-aos="fade-up">
-            <h2>Tulisan Terbaru</h2>
+            <div class="mb-5" style="border-bottom: 1px solid black;">
+                <h2>Tulisan Terbaru</h2>
+            </div>
             @foreach ($articles as $article)
             <div class="card mb-3" style="max-width: 100%;">
                 <div class="row g-0">
@@ -52,7 +54,7 @@
                     <div class="col-11 col-md-8 order-0 order-md-1">
                         <div class="card-body">
                             <a href="{{route('readArticle', $article->title)}}" style="text-transform: capitalize; font-weight: bold; font-size:1rem;" class="card-title">{{ $article->title }}</a>
-                            <p style="text-align:left; font-size:0.9rem; margin-top:1.4rem;" class="card-text">{{ Str::words($article->paragraf_1, 25, '...') }}</p>
+                            <p style="text-align:left; font-size:0.9rem; margin-top:1.4rem;" class="card-text">{{ Str::words(strip_tags($article->text_content), 25, '...') }}</p>
                             <p style="margin-top:0.9rem;" class="card-text"><small class="text-body-secondary">Updated {{ $article->created_at->diffForHumans() }} - oleh {{ $article->writer }}</small></p>
                         </div>
                     </div>
@@ -60,6 +62,7 @@
 
             </div>
             @endforeach
+            {{ $articles->onEachSide(5)->links() }}
         </div>
         <div class="mt-4 mt-md-0 col-12 col-md-4 d-flex justify-content-center">
             <div class="card card-direktur">

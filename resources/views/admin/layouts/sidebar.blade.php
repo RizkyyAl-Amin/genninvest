@@ -58,10 +58,13 @@
                 <span class="menu-title">Direktur</span>
             </a>
         </li>
-
         <li class="nav-item">
-
-
+            <a class="nav-link {{ request()->is('kunjungans*') ? 'active' : '' }}" href="/kunjungans">
+                <i class="icon-head menu-icon"></i>
+                <span class="menu-title">Kunjungan</span>
+            </a>
+        </li>
+        <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
                 <i class="icon-layout menu-icon"></i>
                 <span class="menu-title">UI Elements</span>

@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\Admin\ArticleController;
 use App\Http\Controllers\FrontendController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\ProdiController;
@@ -10,8 +9,15 @@ use App\Http\Controllers\Admin\BeritaController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Admin\KontakController;
 use App\Http\Controllers\Admin\DirekturController;
+<<<<<<< HEAD
 use App\Http\Controllers\Admin\KategoriBeritaController;
+=======
+use App\Http\Controllers\Admin\KunjunganController;
+>>>>>>> 310c856d7879cf91293ec9d348eac40ed9ee3777
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\Admin\ArticleController;
+use App\Http\Controllers\Admin\ProfileController;
+
 use App\Models\Article;
 use App\Models\KategoriBerita;
 
@@ -20,13 +26,14 @@ Route::controller(FrontendController::class)->group(function(){
     Route::get("/article","article")->name("article");
     Route::get("/article/{title}","readArticle")->name("readArticle");
     Route::get("/sambutan","sambutan")->name("sambutan");
+<<<<<<< HEAD
     Route::get("/Berita","Berita")->name("berita");
     Route::get("/Berita/{title}","halamanBerita")->name("halamanBerita");
+=======
+    Route::get("kunjungan", "kunjungan")->name('kunjungan');
+    Route::get("/kunjungan/{title}","readKunjungan")->name("readKunjungan");
+>>>>>>> 310c856d7879cf91293ec9d348eac40ed9ee3777
 });
-
-
-
-
 
 
 Auth::routes();
@@ -34,6 +41,8 @@ Auth::routes();
 // role 1 = admin, role 2 = user
 Route::middleware(['auth', 'checkrole:1'])->group(function () {
     Route::get('/home', [HomeController::class, 'index'])->name('home');
+
+    Route::resource('/berita', BeritaController::class);
     Route::resource('/prodi', ProdiController::class);
     Route::resource('/user', UserController::class);
     Route::resource('/kerjasama', KerjasamaController::class);
@@ -42,6 +51,12 @@ Route::middleware(['auth', 'checkrole:1'])->group(function () {
     Route::resource('/be/article', ArticleController::class);
     Route::resource('/kontak', KontakController::class);
     Route::resource('/direktur', DirekturController::class);
+    Route::resource('/kerjasama', KerjasamaController::class);
+    Route::resource('/kontak', KontakController::class);
+    Route::resource('/prodi', ProdiController::class);
+    Route::resource('/profile', ProfileController::class);
+    Route::resource('/user', UserController::class);
+    Route::resource('/kunjungans', KunjunganController::class);
 });
 
 Route::middleware(['auth', 'checkrole:2'])->group(function () {
