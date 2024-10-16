@@ -9,4 +9,13 @@ class Berita extends Model
 {
     use HasFactory;
     protected $guarded = [];
+    public function kategori()
+    {
+        return $this->belongsTo(KategoriBerita::class, 'kategori_id');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
 }

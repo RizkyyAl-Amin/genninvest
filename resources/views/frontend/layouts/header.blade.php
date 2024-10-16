@@ -29,11 +29,11 @@ background-color:#37517e;
                        @endforeach
                     </ul>
                 </li>
-                <li><a href="/">Berita</a></li>
                 <li class="dropdown"><a href="#"><span>Informasi</span> <i
                     class="bi bi-chevron-down toggle-dropdown"></i></a>
                     <ul>
                         <li><a href="/article">Artikel</a></li>
+                        <li><a href="/Berita">Berita</a></li>
                         <li><a href="#">Kerjasama IDUKA</a></li>
                         <li><a href="#">Kunjungan</a></li>
                     </ul>

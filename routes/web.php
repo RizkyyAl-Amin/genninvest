@@ -10,15 +10,18 @@ use App\Http\Controllers\Admin\BeritaController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Admin\KontakController;
 use App\Http\Controllers\Admin\DirekturController;
+use App\Http\Controllers\Admin\KategoriBeritaController;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Article;
-
+use App\Models\KategoriBerita;
 
 Route::controller(FrontendController::class)->group(function(){
     Route::get("/","home")->name("home");
     Route::get("/article","article")->name("article");
     Route::get("/article/{title}","readArticle")->name("readArticle");
     Route::get("/sambutan","sambutan")->name("sambutan");
+    Route::get("/Berita","Berita")->name("berita");
+    Route::get("/Berita/{title}","halamanBerita")->name("halamanBerita");
 });
 
 
@@ -35,6 +38,7 @@ Route::middleware(['auth', 'checkrole:1'])->group(function () {
     Route::resource('/user', UserController::class);
     Route::resource('/kerjasama', KerjasamaController::class);
     Route::resource('/berita', BeritaController::class);
+    Route::resource('/kategoriBerita', KategoriBeritaController::class);
     Route::resource('/be/article', ArticleController::class);
     Route::resource('/kontak', KontakController::class);
     Route::resource('/direktur', DirekturController::class);

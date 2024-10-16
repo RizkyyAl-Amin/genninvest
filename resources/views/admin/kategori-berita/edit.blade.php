@@ -1,6 +1,6 @@
 @extends('admin.layouts.main')
 
-@section('title', 'Berita')
+@section('title', 'Kategori Berita')
 
 @section('css')
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
@@ -16,25 +16,24 @@
                 <div class="col-md-12 grid-margin">
                     <div class="row align-items-center">
                         <div class="col-12 col-xl-8 mb-2 mb-xl-0">
-                            <h3 class="font-weight-bold">Tambah Berita</h3>
+                            <h3 class="font-weight-bold">Edit Kategori Berita</h3>
                         </div>
                     </div>
                 </div>
                 <div class="col-12 grid-margin stretch-card">
                     <div class="card">
                         <div class="card-body">
-                            <h4 class="card-title">Form Tambah Berita</h4>
-                            <form class="forms-sample" action="{{ route('berita.store') }}" method="POST"
-                                enctype="multipart/form-data">
+                            <h4 class="card-title">Form Edit Kategori Berita</h4>
+                            @foreach ($kategoriBerita as $kategori)
+                            <form class="forms-sample" action="{{ route('kategori-berita.update', [Crypt::encrypt($kategori->id)]) }}" method="POST">
                                 @csrf
-                                @method('POST')
-
+                                @method('PUT')
+                                
                                 <div class="form-group">
-                                    <label for="cover">Cover</label>
-                                    <input type="file"
-                                        class="form-control w-full border border-gray-300 rounded-lg py-2 px-4 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                                        id="cover" name="cover" placeholder="Pilih cover berita">
-                                    @error('cover')
+                                    <label for="nama">Nama Kategori</label>
+                                    <input type="text" class="form-control" id="nama" name="nama"
+                                        placeholder="Masukan nama kategori berita" value="{{ old('nama', $kategori->nama) }}">
+                                    @error('nama')
                                         <p class="mt-2 text-sm text-red-600">
                                             {{ $message }}
                                         </p>
@@ -42,53 +41,29 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="judul">Judul</label>
-                                    <input type="text" class="form-control" id="judul" name="judul"
-                                        placeholder="Masukkan judul berita">
-                                    @error('judul')
+                                    <label for="slug">Slug</label>
+                                    <input type="text" class="form-control" id="slug" name="slug"
+                                        placeholder="Masukan slug kategori berita" value="{{ old('slug', $kategori->slug) }}">
+                                    @error('slug')
                                         <p class="mt-2 text-sm text-red-600">
                                             {{ $message }}
                                         </p>
                                     @enderror
                                 </div>
 
-                
                                 <div class="form-group">
-                                    <label for="kategori_id">Kategori</label>
-                                    <select class="form-control" id="kategori_id" name="kategori_id">
-                                        @foreach($kategoris as $kategori)
-                                            <option value="{{ $kategori->id }}">{{ $kategori->nama }}</option>
-                                        @endforeach
+                                    <label for="status">Status</label>
+                                    <select class="form-control" id="status" name="status">
+                                        <option value="1" {{ old('status', $kategori->status) == 1 ? 'selected' : '' }}>Aktif</option>
+                                        <option value="0" {{ old('status', $kategori->status) == 0 ? 'selected' : '' }}>Non-Aktif</option>
                                     </select>
-                                    @error('kategori_id')
+                                    @error('status')
                                         <p class="mt-2 text-sm text-red-600">
                                             {{ $message }}
                                         </p>
                                     @enderror
                                 </div>
-
-                                <div class="form-group">
-                                    <label for="konten">Konten</label>
-                                    <textarea class="form-control summernote" id="konten" name="konten" rows="4" placeholder="Isi konten berita"></textarea>
-                                    @error('konten')
-                                        <p class="mt-2 text-sm text-red-600">
-                                            {{ $message }}
-                                        </p>
-                                    @enderror
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="tanggal">Tanggal</label>
-                                    <input type="date"
-                                        class="form-control w-full border border-gray-300 rounded-lg py-2 px-4 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                                        id="tanggal" name="tanggal">
-                                    @error('tanggal')
-                                        <p class="mt-2 text-sm text-red-600">
-                                            {{ $message }}
-                                        </p>
-                                    @enderror
-                                </div>
-
+                                @endforeach
                                 <button type="submit" class="btn btn-primary mr-2">Submit</button>
                                 <button class="btn btn-light">Cancel</button>
                             </form>
