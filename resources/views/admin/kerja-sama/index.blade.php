@@ -16,7 +16,7 @@
                         <div class="card">
                             <div class="card-body">
                                 <div class="table-responsive">
-                                    <table class="table table-hover" id="data-table-kerjasama">
+                                    <table class="table table-hover" id="data-table">
                                         <thead>
                                             <tr>
                                                 <th>No</th>
@@ -78,4 +78,55 @@
         });
     });
 </script>
+@endsection
+
+@section('js')
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#data-table').DataTable();
+        })
+    </script>
+    <script>
+        $('body').on('click', '#delete-confirm', function() {
+            let encrypted_id = $(this).data('id'); // Encrypted ID for request
+            let original_id = $(this).data('original-id'); // Original ID for element removal
+            let token = $("meta[name='csrf-token']").attr("content");
+
+            swal.fire({
+                title: 'Apakah kamu yakin?',
+                text: "Data tidak dapat dikembalikan",
+                icon: 'warning',
+                showCancelButton: true,
+                cancelButtonText: 'Batal',
+                confirmButtonText: 'Ya, hapus!',
+                customClass: {
+                    popup: 'custom-swal-height'
+                }
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        url: `/user/${encrypted_id}`,
+                        type: "DELETE",
+                        cache: false,
+                        data: {
+                            "_token": token
+                        },
+                        success: function(response) {
+                            Swal.fire({
+                                type: 'success',
+                                icon: 'success',
+                                title: `${response.message}`,
+                                showConfirmButton: true,
+                                timer: 3000
+                            });
+
+                            // Hapus elemen tabel berdasarkan ID asli
+                            $(`#index_${original_id}`).remove();
+                        }
+                    });
+                }
+            });
+        });
+    </script>
 @endsection
