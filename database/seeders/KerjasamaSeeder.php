@@ -18,7 +18,7 @@ class KerjasamaSeeder extends Seeder
                 'id' => 1,
                 'judul' => 'Kerja sama dengan para alumni Universitas XYZ untuk penyaluran kerja Fresh Graduate',
                 'thumbnail' => 't_kerjasama1.jpg',
-                'deskripsi' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum error explicabo optio libero est officia provident sequi ipsa? Voluptatem quaerat maxime nulla magnam cupiditate consequuntur sit iusto vel commodi voluptates!.',
+                'deskripsi' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum error explicabo optio libero est officia provident sequi ipsa? Voluptatem quaerat maxime nulla magnam cupiditate consequuntur sit iusto vel commodi voluptates!. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum error explicabo optio libero est officia provident sequi ipsa? Voluptatem quaerat maxime nulla magnam cupiditate consequuntur sit iusto vel commodi voluptates!. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum error explicabo optio libero est officia provident sequi ipsa? Voluptatem quaerat maxime nulla magnam cupiditate consequuntur sit iusto vel commodi voluptates!. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum error explicabo optio libero est officia provident sequi ipsa? Voluptatem quaerat maxime nulla magnam cupiditate consequuntur sit iusto vel commodi voluptates!.',
                 'tanggal' => '2024-10-10 10:00:00',
             ],
             [

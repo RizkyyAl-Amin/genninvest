@@ -18,8 +18,16 @@ class ProdiSeeder extends Seeder
                 'id' => 1,
                 'thumbnail' => 't_prodi1.jpg',
                 'logo' => 'l_prodi1.jpg',
-                'deskripsi' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum error explicabo optio libero est officia provident sequi ipsa? Voluptatem quaerat maxime nulla magnam cupiditate consequuntur sit iusto vel commodi voluptates!.',
-                'nama_prodi' => 'Program Studi Sains & Teknologi',
+                'deskripsi' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum error explicabo optio libero est officia provident sequi ipsa? Voluptatem quaerat maxime nulla magnam cupiditate consequuntur sit iusto vel commodi voluptates!. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum error explicabo optio libero est officia provident sequi ipsa? Voluptatem quaerat maxime nulla magnam cupiditate consequuntur sit iusto vel commodi voluptates!. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum error explicabo optio libero est officia provident sequi ipsa? Voluptatem quaerat maxime nulla magnam cupiditate consequuntur sit iusto vel commodi voluptates!. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum error explicabo optio libero est officia provident sequi ipsa? Voluptatem quaerat maxime nulla magnam cupiditate consequuntur sit iusto vel commodi voluptates!. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum error explicabo optio libero est officia provident sequi ipsa? Voluptatem quaerat maxime nulla magnam cupiditate consequuntur sit iusto vel commodi voluptates!.',
+                'nama_prodi' => 'Computer Science',
+            ],
+
+            [
+                'id' => 2,
+                'thumbnail' => 't_prodi2.png',
+                'logo' => 'l_prodi2.png',
+                'deskripsi' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum error explicabo optio libero est officia provident sequi ipsa? Voluptatem quaerat maxime nulla magnam cupiditate consequuntur sit iusto vel commodi voluptates!. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum error explicabo optio libero est officia provident sequi ipsa? Voluptatem quaerat maxime nulla magnam cupiditate consequuntur sit iusto vel commodi voluptates!. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum error explicabo optio libero est officia provident sequi ipsa? Voluptatem quaerat maxime nulla magnam cupiditate consequuntur sit iusto vel commodi voluptates!. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum error explicabo optio libero est officia provident sequi ipsa? Voluptatem quaerat maxime nulla magnam cupiditate consequuntur sit iusto vel commodi voluptates!. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum error explicabo optio libero est officia provident sequi ipsa? Voluptatem quaerat maxime nulla magnam cupiditate consequuntur sit iusto vel commodi voluptates!.',
+                'nama_prodi' => 'Information Security',
             ],
         ];
 

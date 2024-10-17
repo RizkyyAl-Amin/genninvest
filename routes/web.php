@@ -16,7 +16,7 @@ use App\Http\Controllers\Admin\KunjunganController;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Admin\ArticleController;
 use App\Http\Controllers\Admin\ProfileController;
-
+use App\Http\Controllers\Frontend\ProdiController as FrontendProdiController;
 use App\Models\Article;
 use App\Models\KategoriBerita;
 
@@ -29,6 +29,9 @@ Route::controller(FrontendController::class)->group(function(){
     Route::get("/Berita/{title}","halamanBerita")->name("halamanBerita");
     Route::get("kunjungan", "kunjungan")->name('kunjungan');
     Route::get("/kunjungan/{title}","readKunjungan")->name("readKunjungan");
+    Route::get("/Kerjasama", "kerjasama")->name('kerjasama');
+    Route::get("/Kerjasama/{title}","readKerjasama")->name("readKerjasama");
+    Route::resource('/studi', FrontendProdiController::class);
 
 });
 

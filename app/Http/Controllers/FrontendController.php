@@ -8,7 +8,7 @@ use App\Models\Kontak;
 use App\Models\Kunjungan;
 use App\Models\Prodi;
 use App\Models\Berita;
-
+use App\Models\Kerjasama;
 use Illuminate\Http\Request;
 
 class FrontendController extends Controller
@@ -89,6 +89,25 @@ class FrontendController extends Controller
 
           if ($kunjungan) {
                return view('frontend.informasi.readKunjungan', compact("prodis", "kontak", "directur", "kunjungans", "kunjungan"));
+          }
+     }
+     public function kerjasama()
+     {
+          $kerjasamas = Kerjasama::latest()->paginate(10);
+          $directur = Direktur::first();
+          $prodis = Prodi::get();
+          return view("frontend.informasi.kerjasama", compact("kerjasamas", "directur", "prodis"));
+     }
+
+     public function readKerjasama($judul)
+     {
+          $prodis = Prodi::get();
+          $kontak = Kontak::first();
+          $kerjasamas = Kerjasama::latest()->paginate(10);
+          $kerjasama = Kerjasama::where("judul", $judul)->first();
+          $directur = Direktur::first();
+          if ($kerjasama) {
+               return view("frontend.informasi.readKerjasama", compact("prodis", "kontak", "kerjasama", "directur", "kerjasamas"));
           }
      }
 }

@@ -1,6 +1,4 @@
-<header style="@if (!Request::is("/"))
-background-color:#37517e;
-@endif" id="header" class="header d-flex align-items-center fixed-top">
+<header style="@if (!Request::is('/')) background-color:#37517e; @endif" id="header" class="header d-flex align-items-center fixed-top">
     <div class="container-fluid container-xl position-relative d-flex align-items-center">
 
         <a href="/" class="logo d-flex align-items-center me-auto">
@@ -11,7 +9,7 @@ background-color:#37517e;
 
         <nav id="navmenu" class="navmenu">
             <ul>
-                <li><a href="/" class="{{Request::is("/") ? "active" :""}}">Home</a></li>
+                <li><a href="/" class="{{ request()->is('/') ? 'active' : '' }}">Home</a></li>
                 <li class="dropdown">
                     <a href="#"><span>Profil</span> <i
                     class="bi bi-chevron-down toggle-dropdown"></i></a>
@@ -21,11 +19,11 @@ background-color:#37517e;
                     </ul>
                 </li>
                 <li class="dropdown">
-                    <a href="#"><span>Program Studi</span> <i
+                    <a href="/studi"><span>Program Studi</span> <i
                     class="bi bi-chevron-down toggle-dropdown"></i></a>
                     <ul>
                        @foreach ($prodis as $prodi)
-                       <li><a href="#">{{$prodi->nama_prodi}}</a></li>
+                       <li><a href="{{ route('studi.show', $prodi->id) }}">{{$prodi->nama_prodi}}</a></li>
                        @endforeach
                     </ul>
                 </li>
@@ -34,7 +32,7 @@ background-color:#37517e;
                     <ul>
                         <li><a href="/article">Artikel</a></li>
                         <li><a href="/Berita">Berita</a></li>
-                        <li><a href="#">Kerjasama IDUKA</a></li>
+                        <li><a href="/Kerjasama">Kerjasama IDUKA</a></li>
                         <li><a href="{{route('kunjungan')}}">Kunjungan</a></li>
                     </ul>
                 </li>
