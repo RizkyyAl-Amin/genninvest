@@ -58,8 +58,8 @@
                 <span class="menu-title">Direktur</span>
             </a>
         </li>
-        <li class="nav-item">
-            <a class="nav-link {{ request()->is('kunjungans*') ? 'active' : '' }}" href="/kunjungans">
+        <li class="nav-item {{ Request::is('kunjungans*') ? 'active' : '' }}">
+            <a class="nav-link" href="/kunjungans">
                 <i class="icon-head menu-icon"></i>
                 <span class="menu-title">Kunjungan</span>
             </a>

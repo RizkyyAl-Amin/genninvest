@@ -1,7 +1,5 @@
 @extends('admin.layouts.main')
-
 @section('title', 'Data Kunjunan')
-
 @section('css')
     <style>
         .custom-swal-height {
@@ -10,7 +8,6 @@
         }
     </style>
 @endsection
-
 @section('content')
     <div class="content-wrapper">
         <div class="row">

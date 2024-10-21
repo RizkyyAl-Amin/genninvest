@@ -1,7 +1,5 @@
 @extends('admin.layouts.main')
-
 @section('title', 'Data Kunjunan')
-
 @section('css')
     <style>
         .custom-swal-height {
@@ -68,10 +66,9 @@
                                         </p>
                                     @enderror
                                 </div>
-
                             </div>
-
-                            <button type="submit" class="btn btn-primary">Kirim</button>
+                            <button type="submit" class="btn btn-primary btn-sm">Kirim</button>
+                            <a href="{{ route('kunjungans.index') }}" class="btn btn-warning btn-sm">Kembali</a>
                         </form>
                     </div>
                 </div>
