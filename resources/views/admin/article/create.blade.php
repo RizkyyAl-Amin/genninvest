@@ -39,6 +39,19 @@
                             </div>
 
                         </div>
+                        <div class="form-group ">
+                            <label for="kategori_id">Kategori</label>
+                            <select class="form-control" id="kategori_id" name="kategori_id">
+                                @foreach($kategoris as $kategori)
+                                    <option value="{{ $kategori->id }}">{{ $kategori->nama }}</option>
+                                @endforeach
+                            </select>
+                            @error('kategori_id')
+                                <p class="mt-2 text-sm text-danger">
+                                    {{ $message }}
+                                </p>
+                            @enderror
+                        </div>
                         <div class="form-group">
                             <label for="content">Content</label>
                             <textarea class="form-control summernote" id="content" name="text_content" rows="4"

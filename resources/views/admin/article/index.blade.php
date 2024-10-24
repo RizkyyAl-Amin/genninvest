@@ -21,7 +21,8 @@
                                     <th class="text-center" width="50">No.</th>
                                     <th>Judul</th>
                                     <th>Penulis</th>
-                                    <th>Paragraf Utana</th>
+                                    <th>Kategori</th>
+                                    <th>Paragraf Utama</th>
                                     <th class="text-center" width="100">Aksi</th>
                                 </tr>
                             </thead>
@@ -31,6 +32,7 @@
                                         <td class="text-center">{{ $loop->iteration }}.</td>
                                         <td>{{ Str::words($article->title , 3, "...") }}</td>
                                         <td>{{ $article->user->name }}</td>
+                                        <td>{{ $article->kategori->nama }}</td>
                                         <td>{{ Str::words(strip_tags($article->text_content) , 3, "...") }}</td>
                                         <td class="text-center d-flex">
                                             <a style="mr-2" href="{{ route('article.edit', [Crypt::encrypt($article->id)]) }}"

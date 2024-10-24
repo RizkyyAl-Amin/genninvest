@@ -2,35 +2,26 @@
 
 use App\Http\Controllers\FrontendController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Admin\ProdiController;
-use App\Http\Controllers\Admin\KerjasamaController;
 use App\Http\Controllers\Admin\UserController;
-use App\Http\Controllers\Admin\BeritaController;
+
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Admin\KontakController;
-use App\Http\Controllers\Admin\DirekturController;
 
-use App\Http\Controllers\Admin\KategoriBeritaController;
-use App\Http\Controllers\Admin\KunjunganController;
+
+use App\Http\Controllers\Admin\KategoriArticleController;
+
 
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Admin\ArticleController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Frontend\ProdiController as FrontendProdiController;
 use App\Models\Article;
-use App\Models\KategoriBerita;
+use App\Models\KategoriArticle;
 
 Route::controller(FrontendController::class)->group(function(){
     Route::get("/","home")->name("home");
     Route::get("/article","article")->name("article");
     Route::get("/article/{title}","readArticle")->name("readArticle");
-    Route::get("/sambutan","sambutan")->name("sambutan");
-    Route::get("/Berita","Berita")->name("berita");
-    Route::get("/Berita/{title}","halamanBerita")->name("halamanBerita");
-    Route::get("kunjungan", "kunjungan")->name('kunjungan');
-    Route::get("/kunjungan/{title}","readKunjungan")->name("readKunjungan");
-    Route::get("/Kerjasama", "kerjasama")->name('kerjasama');
-    Route::get("/Kerjasama/{title}","readKerjasama")->name("readKerjasama");
     Route::resource('/studi', FrontendProdiController::class);
 
 });
@@ -41,22 +32,13 @@ Auth::routes();
 // role 1 = admin, role 2 = user
 Route::middleware(['auth', 'checkrole:1'])->group(function () {
     Route::get('/home', [HomeController::class, 'index'])->name('home');
-
-    Route::resource('/berita', BeritaController::class);
-    Route::resource('/prodi', ProdiController::class);
     Route::resource('/user', UserController::class);
-    Route::resource('/kerjasama', KerjasamaController::class);
-    Route::resource('/berita', BeritaController::class);
-    Route::resource('/kategoriBerita', KategoriBeritaController::class);
+    Route::resource('/kategoriArticle', KategoriArticleController::class);
     Route::resource('/be/article', ArticleController::class);
     Route::resource('/kontak', KontakController::class);
-    Route::resource('/direktur', DirekturController::class);
-    Route::resource('/kerjasama', KerjasamaController::class);
-    Route::resource('/kontak', KontakController::class);
-    Route::resource('/prodi', ProdiController::class);
     Route::resource('/profile', ProfileController::class);
     Route::resource('/user', UserController::class);
-    Route::resource('/kunjungans', KunjunganController::class);
+
 });
 
 Route::middleware(['auth', 'checkrole:2'])->group(function () {

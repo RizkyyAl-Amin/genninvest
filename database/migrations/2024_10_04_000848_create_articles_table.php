@@ -16,10 +16,8 @@ return new class extends Migration
             $table->string("image")->nullable();
             $table->string("title");
             $table->foreignId('user_id')->constrained("users")->onDelete("cascade");
+            $table->foreignId('kategori_id')->constrained('kategori_articles')->onDelete('cascade');
             $table->text("text_content");
-            // $table->string('ip_address');
-            // $table->string('user_agent')->nullable();
-            // $table->timestamp('visited_at');
             $table->timestamps();
 
         });
@@ -30,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('article');
+        Schema::dropIfExists('articles');
     }
 };

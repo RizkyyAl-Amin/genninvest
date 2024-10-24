@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Article;
+use App\Models\KategoriArticle;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
@@ -28,7 +29,8 @@ class ArticleController extends Controller
      */
     public function create()
     {
-       return view("admin.article.create");
+        $kategoris = KategoriArticle::all();
+       return view("admin.article.create", compact('kategoris'));
     }
 
     /**
@@ -41,6 +43,7 @@ class ArticleController extends Controller
             'image' => 'required|file|mimes:jpg,png,pdf|max:2048',
             "title"=> "min:6|max:100|required",
             "user_id"=> "required",
+            'kategori_id' => 'required|exists:kategori_articles,id',
             "text_content"=> "min:10|required",
         ]);
 
@@ -57,7 +60,8 @@ class ArticleController extends Controller
             "image"=> $data["image"],
             "title"=> $request->title,
             "text_content"=> $request->text_content,
-            "user_id"=> Auth::user()->id
+            "user_id"=> Auth::user()->id,
+            "kategori_id"=> $request->kategori_id
 
 
         ]);
@@ -78,7 +82,8 @@ class ArticleController extends Controller
      */
     public function edit(string $id)
     {
-        return view("admin.article.edit",["data" => Article::find(Crypt::decrypt($id))]);
+        $kategoris = KategoriArticle::all();
+        return view("admin.article.edit",["data" => Article::find(Crypt::decrypt($id))],  compact('kategoris'));
     }
 
     /**
@@ -91,6 +96,7 @@ class ArticleController extends Controller
            'image' => 'required|file|mimes:jpg,png,pdf|max:2048',
             "title"=> "min:6|max:100|required",
            "user_id"=> "required",
+           "kategori_id"=> "required",
             "text_content"=> "min:10|required",
         ]);
         if ($request->hasFile('image')) {
@@ -106,6 +112,7 @@ class ArticleController extends Controller
             $article->image = $filename;
             $article->title = $data['title'];
             $article->user_id = Auth::user()->id;
+            $article->kategori_id = $data['kategori_id'];
             $article->text_content = $data['text_content'];
             $article->save();
 

@@ -9,7 +9,12 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class Article extends Model
 {
     use HasFactory;
-    protected $fillable = ["title","text_content","image","user_id"];
+    protected $fillable = ["title","text_content","image","user_id", "kategori_id"];
+
+    public function kategori()
+    {
+        return $this->belongsTo(KategoriArticle::class, 'kategori_id');
+    }
 
     public function user() :BelongsTo {
         return $this->BelongsTo(User::class);

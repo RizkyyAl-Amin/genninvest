@@ -68,11 +68,10 @@
             <div class="card card-direktur">
                 <img style="position: relative; left: 50%; transform: translateX(-50%)" class="card-img-top rounded-0 custom-img-direktur" src="https://plus.unsplash.com/premium_photo-1682125707803-f985bb8d8b6a?q=80&w=1416&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D">
                 <div class="card-body">
-                    <h4 class="card-title text-center">{{ $directur->nama }}</h4>
+                    <h4 class="card-title text-center"></h4>
                     <p class="text-secondary text-center font-weight-light">- Direktur -</p>
-                    <p class="card-text">{{ Str::words($directur->sambutan, 20, '...') }}</p>
-                    <!-- Pindahkan link selengkapnya di sini, tepat setelah paragraf -->
-                    <a href="{{ route('sambutan') }}" class="card-link d-block text-center mt-3">Selengkapnya</a>
+                    <p class="card-text"></p>
+                    
                 </div>
             </div>
         </div>

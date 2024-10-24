@@ -4,13 +4,14 @@
 <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <title>Politeknik Digital Boash Indonesia</title>
+    <title>GENINVEST</title>
     <meta name="description" content="">
     <meta name="keywords" content="">
 
     <!-- Favicons -->
-    <link href="{{ asset('assets/images/logo-boash.png') }}" rel="icon">
-    <link href="{{ asset('assets/images/logo-boash.png') }}" rel="apple-touch-icon">
+    <link href="{{ asset('arsha/assets/img/logo.svg') }}" rel="icon">
+    <link href="{{ asset('arsha/assets/img/logo.svg') }}" rel="apple-touch-icon">
+    <link rel="shortcut icon" href="{{ asset('arsha/assets/img/logo.svg') }}" !important/>
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com" rel="preconnect">

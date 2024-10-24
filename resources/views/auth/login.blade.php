@@ -5,7 +5,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Login - Boash</title>
+    <title>Login - GENINVEST</title>
     <!-- plugins:css -->
     <link rel="stylesheet" href="{{ asset('assets/vendors/feather/feather.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/vendors/ti-icons/css/themify-icons.css') }}">
@@ -16,7 +16,7 @@
     <!-- inject:css -->
     <link rel="stylesheet" href="{{ asset('assets/css/vertical-layout-light/style.css') }}">
     <!-- endinject -->
-    <link rel="shortcut icon" href="{{ asset('assets/images/logo-boash.png') }}" />
+    <link rel="shortcut icon" href="{{ asset('arsha/assets/img/logo.svg') }}" />
 </head>
 
 <body>
@@ -27,9 +27,9 @@
                     <div class="col-lg-4 mx-auto">
                         <div class="auth-form-light text-left py-5 px-4 px-sm-5">
                             <div class="brand-logo text-center">
-                                <img src="{{ asset('assets/images/logo-boash.png') }}" alt="logo">
+                                <img src="{{ asset('arsha/assets/img/logo.svg') }}" alt="logo">
                             </div>
-                            <h4 class="text-center"><strong>POLITEKNIK DIGITAL BOASH INDONESIA</strong></h4>
+                            <h4 class="text-center"><strong>GENINVEST</strong></h4>
                             <h6 class="font-weight-light text-center">Sign in to continue.</h6>
                             <form class="pt-3" method="POST" action="{{ route('login') }}">
                                 @csrf

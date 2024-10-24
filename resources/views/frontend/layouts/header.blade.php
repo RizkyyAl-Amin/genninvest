@@ -1,50 +1,17 @@
-<header style="@if (!Request::is('/')) background-color:#37517e; @endif" id="header" class="header d-flex align-items-center fixed-top">
+<header style="@if (!Request::is('/')) background-color:#ffffff; @endif background-color:#ffffff; " id="header" class="header d-flex align-items-center fixed-top">
     <div class="container-fluid container-xl position-relative d-flex align-items-center">
 
         <a href="/" class="logo d-flex align-items-center me-auto">
             <!-- Uncomment the line below if you also wish to use an image logo -->
-            <!-- <img src="{{ asset('arsha/assets/img/logo.png') }}" alt=""> -->
-            <h1 class="sitename">BOASH</h1>
+           <img src="{{ asset('arsha/assets/img/logo.svg') }}" alt="geninvest" sizes="2">
+           
         </a>
 
-        <nav id="navmenu" class="navmenu">
-            <ul>
-                <li><a href="/" class="{{ request()->is('/') ? 'active' : '' }}">Home</a></li>
-                <li class="dropdown">
-                    <a href="#"><span>Profil</span> <i
-                    class="bi bi-chevron-down toggle-dropdown"></i></a>
-                    <ul>
-                        <li><a href="#">Sejarah Boash</a></li>
-                        <li><a href="#">Visi Dan Misi</a></li>
-                    </ul>
-                </li>
-                <li class="dropdown">
-                    <a href="/studi"><span>Program Studi</span> <i
-                    class="bi bi-chevron-down toggle-dropdown"></i></a>
-                    <ul>
-                       @foreach ($prodis as $prodi)
-                       <li><a href="{{ route('studi.show', $prodi->id) }}">{{$prodi->nama_prodi}}</a></li>
-                       @endforeach
-                    </ul>
-                </li>
-                <li class="dropdown"><a href="#"><span>Informasi</span> <i
-                    class="bi bi-chevron-down toggle-dropdown"></i></a>
-                    <ul>
-                        <li><a href="/article">Artikel</a></li>
-                        <li><a href="/Berita">Berita</a></li>
-                        <li><a href="/Kerjasama">Kerjasama IDUKA</a></li>
-                        <li><a href="{{route('kunjungan')}}">Kunjungan</a></li>
-                    </ul>
-                </li>
-                <li class="dropdown">
-                    <a href="#"><span>Galeri</span> <i
-                    class="bi bi-chevron-down toggle-dropdown"></i></a>
-                    <ul>
-                        <li><a href="#">Galeri Foto</a></li>
-                        <li><a href="#">Galeri Video</a></li>
-                    </ul>
-                </li>
-                <li><a href="/">Hubungi Kami</a></li>
+        <nav id="navmenu" class="navmenu" >
+            <ul >
+                <li><a href="/" class="{{ request()->is('/') ? 'active' : '' }}">Beranda</a></li>
+                <li><a href="/">Artikel</a></li>
+                <li><a href="/">Pusat Bantuan</a></li>
                 {{-- Contoh Dropdown --}}
                 {{-- <li class="dropdown"><a href="#"><span>Dropdown</span> <i
                             class="bi bi-chevron-down toggle-dropdown"></i></a>

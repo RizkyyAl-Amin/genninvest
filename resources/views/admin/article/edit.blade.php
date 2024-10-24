@@ -19,7 +19,7 @@
                         @method("put")
                         <div class="form-row">
                             <div class="form-group col-md-6">
-                                <label for="title">judul</label>
+                                <label for="title">Title</label>
                                 <input type="text" class="form-control" id="title" name="title" placeholder="Judul"
                                     value="{{ old('title', $data->title) }}">
                                 @error('title')
@@ -30,11 +30,22 @@
 
                             </div>
                             <div class="form-group col-md-6">
-                                <label for="penulis">Penulis</label>
+                                <label for="user_id">Writer</label>
                                 <input type="text" name="user_id" readonly value="{{Auth::user()->name}}" class="form-control" id="penulis">
                                
                             </div>
 
+                        </div>
+                        <div class="form-group ">
+                            <label for="kategori_id">Kategori</label>
+                            <select class="form-control" id="kategori_id" name="kategori_id">
+                                @foreach ($kategori_articles as $kategori)
+                                    <option value="{{ $kategori->id }}" {{ $kategori->id == $article->kategori_id ? 'selected' : '' }}>
+                                        {{ $kategori->nama }}
+                                    </option>
+                                @endforeach
+                            </select>
+                           
                         </div>
                         <div class="form-group">
                             <label for="konten">Teks Content</label>
